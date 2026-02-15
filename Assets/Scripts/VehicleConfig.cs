@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 
 namespace DeliveryMultiverse
 {
-    [Serializable]
-    public class BiomeConfig
+    [CreateAssetMenu(fileName = "VehicleConfig", menuName = "DeliveryMultiverse/Vehicle Config", order = 1)]
+    public class VehicleConfig : ScriptableObject
     {
         public float maxSpeed = 12f;
         public float acceleration = 30f;

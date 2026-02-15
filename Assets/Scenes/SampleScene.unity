@@ -181,7 +181,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 5
+    OrthographicSize: 8
     NearClipPlane: 0.01
     FarClipPlane: 1000
     Dutch: 0
@@ -277,7 +277,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -988,18 +988,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.VehicleController
   inputManager: {fileID: 1773301490}
   movementReference: {fileID: 2024358468}
-  defaultBiome:
-    maxSpeed: 12
-    acceleration: 30
-    drag: 2
-    steeringSensitivity: 70
-    gravityMultiplier: 1
-    jumpForce: 10
-    extraLateralDrift: 0
+  defaultVehicleConfig: {fileID: 11400000, guid: 5c105a007facb3c43b9138eec95fcf61, type: 2}
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
   groundCheckDistance: 0.2
+  isGrounded: 0
 --- !u!54 &2024358470
 Rigidbody:
   m_ObjectHideFlags: 0
