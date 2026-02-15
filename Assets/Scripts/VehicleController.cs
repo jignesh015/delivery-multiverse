@@ -10,7 +10,7 @@ namespace DeliveryMultiverse
         [SerializeField] private Transform movementReference;
 
         [Header("Biome")]
-        [SerializeField] private BiomeConfig defaultBiome;
+        [SerializeField] private VehicleConfig defaultVehicleConfig;
 
         [Header("Grounding")]
         [SerializeField] private LayerMask groundMask = ~0;
@@ -50,9 +50,9 @@ namespace DeliveryMultiverse
 
         private void Start()
         {
-            if (defaultBiome != null)
+            if (defaultVehicleConfig != null)
             {
-                ApplyBiomeConfig(defaultBiome);
+                ApplyBiomeConfig(defaultVehicleConfig);
             }
         }
 
@@ -69,7 +69,7 @@ namespace DeliveryMultiverse
             isGrounded = IsGrounded();
         }
 
-        public void ApplyBiomeConfig(BiomeConfig config)
+        public void ApplyBiomeConfig(VehicleConfig config)
         {
             if (config == null)
             {
