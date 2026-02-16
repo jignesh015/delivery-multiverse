@@ -6,13 +6,31 @@ namespace DeliveryMultiverse
     public class DeliveryPoint : MonoBehaviour
     {
         private bool hasVehicleStoppedHere = false;
-        
-        
+
+        private void Awake()
+        {
+            GameStatic.OnPlayerPressedInteract += OnPlayerPressedInteract;
+        }
+
+        private void OnDestroy()
+        {
+            GameStatic.OnPlayerPressedInteract -= OnPlayerPressedInteract;
+        }
+
+        private void OnPlayerPressedInteract()
+        {
+            if(GameStatic.CurrentDeliveryPoint != this) return;
+            if(!hasVehicleStoppedHere) return;
+            
+            GameStatic.OnPlayerInteractedWithDeliveryPoint?.Invoke(this);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if(!other.CompareTag(GameStatic.VehicleTag)) return;
             if(GameStatic.CurrentDeliveryPoint != this) return;
             
+            hasVehicleStoppedHere = false;
             GameStatic.OnPlayerEnteredDeliveryPoint?.Invoke(this);
         }
         
@@ -21,6 +39,7 @@ namespace DeliveryMultiverse
             if(!other.CompareTag(GameStatic.VehicleTag)) return;
             if(GameStatic.CurrentDeliveryPoint != this) return;
             
+            hasVehicleStoppedHere = false;
             GameStatic.OnPlayerExitedDeliveryPoint?.Invoke(this);
         }
 

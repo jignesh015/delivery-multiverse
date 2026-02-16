@@ -24,6 +24,7 @@ namespace DeliveryMultiverse
         private float m_BrakeInput;
         private float m_SteerInput;
         private bool m_JumpPressed;
+        private bool m_InteractPressed;
         private Vector3 m_DesiredDirection;
 
         private float m_MaxSpeed;
@@ -98,12 +99,18 @@ namespace DeliveryMultiverse
                 m_BrakeInput = 0f;
                 m_SteerInput = 0f;
                 m_JumpPressed = false;
+                m_InteractPressed = false;
                 return;
             }
 
             m_AccelerateInput = Mathf.Clamp01(inputManager.AccelerateInput);
             m_BrakeInput = Mathf.Clamp01(inputManager.BrakeInput);
             m_SteerInput = Mathf.Clamp(inputManager.SteerInput, -1f, 1f);
+            m_InteractPressed = inputManager.ConsumeInteractPressed();
+            if(m_InteractPressed)
+            {
+                GameStatic.OnPlayerPressedInteract?.Invoke();
+            }
         }
 
         private void HandleMovement()

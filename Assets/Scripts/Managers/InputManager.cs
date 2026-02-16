@@ -11,16 +11,19 @@ namespace DeliveryMultiverse
         [SerializeField] private string brakeActionName = "Brake";
         [SerializeField] private string steerActionName = "Steer";
         [SerializeField] private string jumpActionName = "Jump";
+        [SerializeField] private string interactActionName = "Interact";
 
         private InputAction m_AccelerateAction;
         private InputAction m_BrakeAction;
         private InputAction m_SteerAction;
         private InputAction m_JumpAction;
+        private InputAction m_InteractAction;
 
         private float m_AccelerateInput;
         private float m_BrakeInput;
         private float m_SteerInput;
         private bool m_JumpQueued;
+        private bool m_InteractQueued;
         private bool m_LoggedMissing;
 
         public float AccelerateInput => m_AccelerateInput;
@@ -37,6 +40,17 @@ namespace DeliveryMultiverse
             m_JumpQueued = false;
             return true;
         }
+        
+        public bool ConsumeInteractPressed()
+        {
+            if (!m_InteractQueued)
+            {
+                return false;
+            }
+
+            m_InteractQueued = false;
+            return true;
+        }
 
         private void OnEnable()
         {
@@ -45,25 +59,11 @@ namespace DeliveryMultiverse
 
         private void OnDisable()
         {
-            if (m_AccelerateAction != null)
-            {
-                m_AccelerateAction.Disable();
-            }
-
-            if (m_BrakeAction != null)
-            {
-                m_BrakeAction.Disable();
-            }
-
-            if (m_SteerAction != null)
-            {
-                m_SteerAction.Disable();
-            }
-
-            if (m_JumpAction != null)
-            {
-                m_JumpAction.Disable();
-            }
+            m_AccelerateAction?.Disable();
+            m_BrakeAction?.Disable();
+            m_SteerAction?.Disable();
+            m_JumpAction?.Disable();
+            m_InteractAction?.Disable();
         }
 
         private void Update()
@@ -87,11 +87,16 @@ namespace DeliveryMultiverse
             {
                 m_JumpQueued = true;
             }
+            
+            if (m_InteractAction is { triggered: true })
+            {
+                m_InteractQueued = true;
+            }
         }
 
         private void BindActions()
         {
-            if (actions == null)
+            if (!actions)
             {
                 LogMissing("InputManager is missing an InputActionAsset reference.");
                 return;
@@ -108,6 +113,7 @@ namespace DeliveryMultiverse
             m_BrakeAction = map.FindAction(brakeActionName, true);
             m_SteerAction = map.FindAction(steerActionName, true);
             m_JumpAction = map.FindAction(jumpActionName, true);
+            m_InteractAction = map.FindAction(interactActionName, true);
 
             if (m_AccelerateAction == null || m_BrakeAction == null || m_SteerAction == null)
             {
@@ -118,11 +124,9 @@ namespace DeliveryMultiverse
             m_AccelerateAction.Enable();
             m_BrakeAction.Enable();
             m_SteerAction.Enable();
-            
-            if (m_JumpAction != null)
-            {
-                m_JumpAction.Enable();
-            }
+
+            m_JumpAction?.Enable();
+            m_InteractAction?.Enable();
         }
 
         private void LogMissing(string message)

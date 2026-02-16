@@ -17,6 +17,8 @@ namespace DeliveryMultiverse
         #endregion
 
         #region EVENTS
+        
+        // Delivery Point Events
         public static UnityAction OnDeliveryPointsRequested;
         public static UnityAction<Queue<DeliveryPoint>> OnDeliveryPointsQueued;
         public static UnityAction<DeliveryPoint> OnDeliveryPointAssigned;
@@ -25,9 +27,12 @@ namespace DeliveryMultiverse
         public static UnityAction<DeliveryPoint, bool> OnPlayerStoppedAtDeliveryPoint;
         public static UnityAction<DeliveryPoint> OnPlayerInteractedWithDeliveryPoint;
         public static UnityAction<DeliveryPoint> OnDeliveryCompleted;
+        public static UnityAction OnAllDeliveriesCompleted;
         
         public static UnityAction<DeliveryPoint, bool> OnDeliveryPointVisibleOnScreen;
-
+        
+        // Player Interaction Events
+        public static UnityAction OnPlayerPressedInteract;
         #endregion
     }
 }
