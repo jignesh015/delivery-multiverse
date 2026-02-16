@@ -15,16 +15,18 @@ namespace DeliveryMultiverse
         private void Awake()
         {
             GameStatic.OnDeliveryPointsRequested += OnDeliveryPointsRequested;
-        }
-
-        private void Start()
-        {
-            m_VehicleController = FindFirstObjectByType<VehicleController>();
+            GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnDeliveryPointsRequested -= OnDeliveryPointsRequested;
+            GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
+        }
+
+        private void Start()
+        {
+            m_VehicleController = FindFirstObjectByType<VehicleController>();
         }
 
         private void OnDeliveryPointsRequested()
@@ -62,6 +64,22 @@ namespace DeliveryMultiverse
             var firstPoint = m_DeliveryPointsQueue.Dequeue();
             GameStatic.CurrentDeliveryPoint = firstPoint;
             GameStatic.OnDeliveryPointAssigned?.Invoke(firstPoint);
+        }
+
+        private void OnDeliveryCompleted(DeliveryPoint deliveryPoint)
+        {
+            if (GameStatic.CurrentDeliveryPoint != deliveryPoint) return;
+            
+            if (m_DeliveryPointsQueue.Count <= 0)
+            {
+                GameStatic.CurrentDeliveryPoint = null;
+                GameStatic.OnAllDeliveriesCompleted?.Invoke();
+                return;
+            }
+            
+            var nextPoint = m_DeliveryPointsQueue.Dequeue();
+            GameStatic.CurrentDeliveryPoint = nextPoint;
+            GameStatic.OnDeliveryPointAssigned?.Invoke(nextPoint);
         }
     }
 }
