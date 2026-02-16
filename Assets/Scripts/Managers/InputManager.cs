@@ -35,7 +35,6 @@ namespace DeliveryMultiverse
             }
 
             m_JumpQueued = false;
-            Debug.Log("<color=green>Jump action consumed</color>");
             return true;
         }
 
@@ -87,7 +86,6 @@ namespace DeliveryMultiverse
             if (m_JumpAction is { triggered: true })
             {
                 m_JumpQueued = true;
-                Debug.Log("<color=yellow>Jump action queued</color>");
             }
         }
 
