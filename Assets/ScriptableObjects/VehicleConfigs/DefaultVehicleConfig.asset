@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f2f1a796404675a0f6b96b7232484e, type: 3}
   m_Name: DefaultVehicleConfig
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.VehicleConfig
-  maxSpeed: 12
-  acceleration: 30
+  maxSpeed: 100
+  acceleration: 40
   drag: 2
-  steeringSensitivity: 70
+  steeringSensitivity: 100
   gravityMultiplier: 1
   jumpForce: 6
   extraLateralDrift: 1
