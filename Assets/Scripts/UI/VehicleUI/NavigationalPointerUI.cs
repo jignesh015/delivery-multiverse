@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace DeliveryMultiverse
@@ -14,12 +15,15 @@ namespace DeliveryMultiverse
             m_PointerPivot = transform;
             TryGetComponent(out m_CanvasGroup);
             TogglePointerVisibility(false);
+            
             GameStatic.OnDeliveryPointAssigned += OnDeliveryPointAssigned;
+            GameStatic.OnDeliveryPointVisibleOnScreen += OnDeliveryPointVisibleOnScreen;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnDeliveryPointAssigned -= OnDeliveryPointAssigned;
+            GameStatic.OnDeliveryPointVisibleOnScreen -= OnDeliveryPointVisibleOnScreen;
         }
 
         private void Update()
@@ -43,12 +47,18 @@ namespace DeliveryMultiverse
         private void TogglePointerVisibility(bool isVisible)
         {
             if (m_CanvasGroup)
-                m_CanvasGroup.alpha = isVisible ? 1f : 0f;
+                m_CanvasGroup.DOFade(isVisible ? 1f : 0f, 0.3f);
         }
 
-        private void OnDeliveryPointAssigned(DeliveryPoint arg0)
+        private void OnDeliveryPointAssigned(DeliveryPoint deliveryPoint)
         {
             TogglePointerVisibility(true);
+        }
+
+        private void OnDeliveryPointVisibleOnScreen(DeliveryPoint deliveryPoint, bool isVisible)
+        {
+            if (deliveryPoint != GameStatic.CurrentDeliveryPoint) return;
+            TogglePointerVisibility(!isVisible);
         }
     }
 }

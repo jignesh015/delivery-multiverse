@@ -38,11 +38,13 @@ namespace DeliveryMultiverse
         // Brake/Reverse parameters
         private const float BrakeForce = 50f;
         private const float MinSpeedForSteering = 0.5f;
+        
+        public bool HasVehicleStopped => m_Rb.linearVelocity.sqrMagnitude < 0.01f;
 
         private void Awake()
         {
             m_Rb = GetComponent<Rigidbody>();
-            if (inputManager == null)
+            if (!inputManager)
             {
                 inputManager = GetComponent<InputManager>();
             }
@@ -173,7 +175,6 @@ namespace DeliveryMultiverse
             if (m_JumpPressed && m_JumpForce > 0f && IsGrounded())
             {
                 m_Rb.AddForce(Vector3.up * m_JumpForce, ForceMode.VelocityChange);
-                Debug.Log("<color=cyan>Jump executed</color>");
             }
 
             // Clamp forward speed when accelerating

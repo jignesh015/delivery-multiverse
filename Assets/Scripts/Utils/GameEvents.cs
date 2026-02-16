@@ -10,10 +10,24 @@ namespace DeliveryMultiverse
         public static DeliveryPoint CurrentDeliveryPoint;
         #endregion
 
+        #region CONSTANTS
+        public const string VehicleTag = "Player";
+        
+
+        #endregion
+
         #region EVENTS
         public static UnityAction OnDeliveryPointsRequested;
         public static UnityAction<Queue<DeliveryPoint>> OnDeliveryPointsQueued;
         public static UnityAction<DeliveryPoint> OnDeliveryPointAssigned;
+        public static UnityAction<DeliveryPoint> OnPlayerEnteredDeliveryPoint;
+        public static UnityAction<DeliveryPoint> OnPlayerExitedDeliveryPoint;
+        public static UnityAction<DeliveryPoint, bool> OnPlayerStoppedAtDeliveryPoint;
+        public static UnityAction<DeliveryPoint> OnPlayerInteractedWithDeliveryPoint;
+        public static UnityAction<DeliveryPoint> OnDeliveryCompleted;
+        
+        public static UnityAction<DeliveryPoint, bool> OnDeliveryPointVisibleOnScreen;
+
         #endregion
     }
 }

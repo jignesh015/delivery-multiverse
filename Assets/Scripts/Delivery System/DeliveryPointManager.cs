@@ -51,7 +51,6 @@ namespace DeliveryMultiverse
             m_DeliveryPointsQueue.Clear();
             foreach (var point in selectedPoints)
             {
-                Debug.Log($"<color=cyan>Delivery Point Queued:</color> {point.name}");
                 m_DeliveryPointsQueue.Enqueue(point);
             }
             
@@ -63,7 +62,6 @@ namespace DeliveryMultiverse
             var firstPoint = m_DeliveryPointsQueue.Dequeue();
             GameStatic.CurrentDeliveryPoint = firstPoint;
             GameStatic.OnDeliveryPointAssigned?.Invoke(firstPoint);
-            Debug.Log($"<color=green>Delivery Point Assigned:</color> {firstPoint.name}");
         }
     }
 }
