@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DeliveryMultiverse
@@ -11,6 +13,7 @@ namespace DeliveryMultiverse
 
         [Header("Biome")]
         [SerializeField] private VehicleConfig defaultVehicleConfig;
+        [SerializeField] private List<VehicleConfig> biomeVehicleConfigs;
 
         [Header("Grounding")]
         [SerializeField] private LayerMask groundMask = ~0;
@@ -50,14 +53,13 @@ namespace DeliveryMultiverse
             {
                 inputManager = GetComponent<InputManager>();
             }
+            
+            GameStatic.OnBiomeChanged += OnBiomeChanged;
         }
 
-        private void Start()
+        private void OnDestroy()
         {
-            if (defaultVehicleConfig != null)
-            {
-                ApplyBiomeConfig(defaultVehicleConfig);
-            }
+            GameStatic.OnBiomeChanged -= OnBiomeChanged;
         }
 
         private void Update()
@@ -73,7 +75,7 @@ namespace DeliveryMultiverse
             isGrounded = IsGrounded();
         }
 
-        public void ApplyBiomeConfig(VehicleConfig config)
+        private void ApplyBiomeConfig(VehicleConfig config)
         {
             if (config == null)
             {
@@ -263,5 +265,14 @@ namespace DeliveryMultiverse
             var distance = groundCheckDistance + 0.05f;
             return Physics.Raycast(origin, Vector3.down, distance, groundMask, QueryTriggerInteraction.Ignore);
         }
+
+
+        #region Event Handlers
+        private void OnBiomeChanged(BiomeType biomeType)
+        {
+            var config = biomeVehicleConfigs.Find(c => c.biomeType == biomeType);
+            ApplyBiomeConfig(config ? config : defaultVehicleConfig);
+        }
+        #endregion
     }
 }

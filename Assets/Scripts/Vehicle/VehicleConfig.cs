@@ -6,6 +6,7 @@ namespace DeliveryMultiverse
     [CreateAssetMenu(fileName = "VehicleConfig", menuName = "DeliveryMultiverse/Vehicle Config", order = 1)]
     public class VehicleConfig : ScriptableObject
     {
+        public BiomeType biomeType;
         public float maxSpeed = 12f;
         public float reverseSpeedFactor = 0.75f;
         public float acceleration = 30f;
