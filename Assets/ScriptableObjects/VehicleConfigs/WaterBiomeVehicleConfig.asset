@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WaterBiomeVehicleConfig
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.VehicleConfig
   maxSpeed: 12
+  reverseSpeedFactor: 1
   acceleration: 30
   drag: 0.5
   steeringSensitivity: 80

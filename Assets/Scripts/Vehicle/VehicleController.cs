@@ -30,6 +30,7 @@ namespace DeliveryMultiverse
         private float m_MaxSpeed;
         private float m_ReverseSpeed;
         private float m_Acceleration;
+        private float m_ReverseAccelerationFactor;
         private float m_Drag;
         private float m_SteeringSensitivity;
         private float m_GravityMultiplier;
@@ -80,8 +81,9 @@ namespace DeliveryMultiverse
             }
 
             m_MaxSpeed = config.maxSpeed;
-            m_ReverseSpeed = config.maxSpeed * 0.5f;
+            m_ReverseSpeed = config.maxSpeed * config.reverseSpeedFactor;
             m_Acceleration = config.acceleration;
+            m_ReverseAccelerationFactor = config.reverseSpeedFactor;
             m_Drag = config.drag;
             m_SteeringSensitivity = config.steeringSensitivity;
             m_GravityMultiplier = config.gravityMultiplier;
@@ -152,7 +154,7 @@ namespace DeliveryMultiverse
                 {
                     // Reverse - move backward
                     var reverseDirection = -currentForward;
-                    m_Rb.AddForce(reverseDirection * (m_Acceleration * 0.5f * m_BrakeInput), ForceMode.Acceleration);
+                    m_Rb.AddForce(reverseDirection * (m_Acceleration * m_ReverseAccelerationFactor * m_BrakeInput), ForceMode.Acceleration);
                     m_DesiredDirection = reverseDirection;
 
                     // Clamp reverse speed
