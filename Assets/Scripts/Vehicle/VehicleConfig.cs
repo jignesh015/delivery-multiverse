@@ -7,6 +7,7 @@ namespace DeliveryMultiverse
     public class VehicleConfig : ScriptableObject
     {
         public float maxSpeed = 12f;
+        public float reverseSpeedFactor = 0.75f;
         public float acceleration = 30f;
         public float drag = 0.5f;
         public float steeringSensitivity = 70f; 
