@@ -8,6 +8,7 @@ namespace DeliveryMultiverse
     {
         #region REALTIME DATA
         public static DeliveryPoint CurrentDeliveryPoint;
+        public static BiomeType CurrentBiome;
         #endregion
 
         #region CONSTANTS
@@ -17,6 +18,9 @@ namespace DeliveryMultiverse
         #endregion
 
         #region EVENTS
+        // Biome Events
+        public static UnityAction<BiomeType> OnBiomeChanged;
+        
         
         // Delivery Point Events
         public static UnityAction OnDeliveryPointsRequested;

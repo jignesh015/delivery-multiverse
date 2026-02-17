@@ -269,6 +269,74 @@
             "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
             "actions": [],
             "bindings": []
+        },
+        {
+            "name": "Debug",
+            "id": "12d3849f-021f-43cb-9204-2e6da0d0d761",
+            "actions": [
+                {
+                    "name": "Biome1",
+                    "type": "Button",
+                    "id": "b6bc8bdc-fb78-4fab-96a9-932f1fb1e32d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Biome2",
+                    "type": "Button",
+                    "id": "ff1c2752-8ca1-4a33-97c9-00c49a0b5ea4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Biome3",
+                    "type": "Button",
+                    "id": "e26c554a-7c51-4a08-9cf8-92caa70185c6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "983f2fa2-705e-460e-b29d-99f98c8c7148",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Biome1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9018c05b-1be4-40e6-b284-6745d4eeac6e",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Biome2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f14f4517-a481-4796-a500-1b9dae08256e",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Biome3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
