@@ -7,17 +7,17 @@ namespace DeliveryMultiverse
     {
         [SerializeField] private int timePerRound = 180;
         
-        private bool m_IsDayActive;
-        
         private void Awake()
         {
             GameStatic.ResetGameState();
             GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
+            GameStatic.OnNextDayButtonPressed += StartNewDay;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
+            GameStatic.OnNextDayButtonPressed -= StartNewDay;
         }
 
         private void Start()
@@ -27,7 +27,7 @@ namespace DeliveryMultiverse
 
         private void Update()
         {
-            if (!m_IsDayActive)
+            if (!GameStatic.IsDayActive)
                 return;
             
             if(GameStatic.IsPlayingMinigame)
@@ -41,14 +41,17 @@ namespace DeliveryMultiverse
         private void StartNewDay()
         {
             GameStatic.CurrentDayNumber++;
-            GameStatic.TimeRemainingInDay += timePerRound;
+            GameStatic.TotalTipsEarnedToday = 0;
+            GameStatic.DeliveriesCompletedToday = 0;
+            GameStatic.TimeRemainingInDay = timePerRound;
+            
+            GameStatic.IsDayActive = true;
             GameStatic.OnNewDayStarted?.Invoke();
-            m_IsDayActive = true;
         }
         
         private void EndCurrentDay()
         {
-            m_IsDayActive = false;
+            GameStatic.IsDayActive = false;
             GameStatic.TimeRemainingInDay = 0;
             GameStatic.OnDayEnded?.Invoke();
             GameStatic.SaveDeliveryScore();
