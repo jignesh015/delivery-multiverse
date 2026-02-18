@@ -30,7 +30,7 @@ namespace DeliveryMultiverse
         public static UnityAction<DeliveryPoint> OnPlayerExitedDeliveryPoint;
         public static UnityAction<DeliveryPoint, bool> OnPlayerStoppedAtDeliveryPoint;
         public static UnityAction<DeliveryPoint> OnPlayerInteractedWithDeliveryPoint;
-        public static UnityAction<DeliveryPoint> OnDeliveryCompleted;
+        public static UnityAction<DeliveryPoint, int> OnDeliveryCompleted; // float parameter is the tip amount earned
         public static UnityAction OnAllDeliveriesCompleted;
         
         public static UnityAction<DeliveryPoint, bool> OnDeliveryPointVisibleOnScreen;
