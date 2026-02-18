@@ -12,7 +12,7 @@ namespace DeliveryMultiverse
 
         private void StartGame()
         {
-            GameStatic.OnDeliveryPointsRequested?.Invoke();
+            GameStatic.OnDeliveryPointRequested?.Invoke();
         }
     }
 }
