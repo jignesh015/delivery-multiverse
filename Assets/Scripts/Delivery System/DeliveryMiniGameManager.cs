@@ -91,6 +91,8 @@ namespace DeliveryMultiverse
             
             if (miniGamePopup != null)
                 miniGamePopup.SetActive(false);
+            
+            GameStatic.IsPlayingMinigame = false;
         }
         
         private void OnDestroy()
@@ -172,6 +174,7 @@ namespace DeliveryMultiverse
             m_TimeInSafeZone = 0f;
             m_NeedleVelocity = 0f;
             m_WobbleOffset = 0f;
+            GameStatic.IsPlayingMinigame = true;
             
             m_CurrentBiomeSpecificSettings = biomeSpecificSettings.Find(s => s.biomeType == GameStatic.CurrentBiome);
             var safeZoneMinWidth = m_CurrentBiomeSpecificSettings.safeZoneMinWidth;
@@ -319,7 +322,6 @@ namespace DeliveryMultiverse
         private void EndMiniGame()
         {
             var finalScore = GetNormalizedScore();
-            Debug.Log($"Mini-game ended! Score: {finalScore:F2} ({finalScore * 100f:F0}%)");
 
             deliveringScreen.SetActive(false);
             deliveredScreen.SetActive(true);
@@ -360,6 +362,7 @@ namespace DeliveryMultiverse
             {
                 miniGamePopup.SetActive(false);
                 ToggleCanvasGroup(false);
+                GameStatic.IsPlayingMinigame = false;
                 GameStatic.OnDeliveryCompleted?.Invoke(m_CurrentDeliveryPoint, tipAmount);
             });
         }

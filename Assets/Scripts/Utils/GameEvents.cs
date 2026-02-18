@@ -9,6 +9,7 @@ namespace DeliveryMultiverse
         #region REALTIME DATA
         public static DeliveryPoint CurrentDeliveryPoint;
         public static BiomeType CurrentBiome;
+        public static bool IsPlayingMinigame;
         #endregion
 
         #region CONSTANTS

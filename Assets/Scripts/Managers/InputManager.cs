@@ -32,6 +32,9 @@ namespace DeliveryMultiverse
 
         public bool ConsumeJumpPressed()
         {
+            // Disable jump for now
+            return false;
+
             if (!m_JumpQueued)
             {
                 return false;

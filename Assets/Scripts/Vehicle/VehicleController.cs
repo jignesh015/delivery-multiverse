@@ -64,11 +64,15 @@ namespace DeliveryMultiverse
 
         private void Update()
         {
+            if(GameStatic.IsPlayingMinigame) return;
+            
             HandleInput();
         }
 
         private void FixedUpdate()
         {
+            if(GameStatic.IsPlayingMinigame) return;
+            
             HandleMovement();
             ApplyGravity();
             HandleSteering();
@@ -77,7 +81,7 @@ namespace DeliveryMultiverse
 
         private void ApplyBiomeConfig(VehicleConfig config)
         {
-            if (config == null)
+            if (!config)
             {
                 return;
             }
@@ -126,7 +130,7 @@ namespace DeliveryMultiverse
             currentForward.Normalize();
 
             // Check if moving forward or backward relative to car's orientation
-            bool isMovingForward = Vector3.Dot(planarVelocity, currentForward) > 0f;
+            var isMovingForward = Vector3.Dot(planarVelocity, currentForward) > 0f;
 
             // Handle acceleration
             if (m_AccelerateInput > 0.01f)
@@ -171,14 +175,7 @@ namespace DeliveryMultiverse
             // Maintain desired direction for steering when coasting
             if (m_AccelerateInput < 0.01f && m_BrakeInput < 0.01f)
             {
-                if (planarVelocity.sqrMagnitude > 0.01f)
-                {
-                    m_DesiredDirection = planarVelocity.normalized;
-                }
-                else
-                {
-                    m_DesiredDirection = currentForward;
-                }
+                m_DesiredDirection = planarVelocity.sqrMagnitude > 0.01f ? planarVelocity.normalized : currentForward;
             }
 
             // Jump
