@@ -27,7 +27,7 @@ namespace DeliveryMultiverse
         {
             TryGetComponent(out m_CanvasGroup);
             ToggleCanvasGroup(false);
-            resignButton.onClick.AddListener(OnReginButtonPressed);
+            resignButton.onClick.AddListener(OnResignButtonPressed);
             nextDayButton.onClick.AddListener(OnNextDayButtonPressed);
             
             GameStatic.OnDayEnded += OnDayEnded;
@@ -38,7 +38,7 @@ namespace DeliveryMultiverse
             GameStatic.OnDayEnded -= OnDayEnded;
             
             if (resignButton)
-                resignButton.onClick.RemoveListener(OnReginButtonPressed);
+                resignButton.onClick.RemoveListener(OnResignButtonPressed);
             if (nextDayButton)                
                 nextDayButton.onClick.RemoveListener(OnNextDayButtonPressed);
         }
@@ -83,12 +83,12 @@ namespace DeliveryMultiverse
             m_CanvasGroup.blocksRaycasts = isVisible;
         }
         
-        private void OnReginButtonPressed()
+        private void OnResignButtonPressed()
         {
             m_CanvasGroup.interactable = false;
             popUpTransform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
             {
-                // TODO: Imeplement menu scene and load it here
+                GameStatic.OnResignButtonPressed?.Invoke();
             });
         }
 
