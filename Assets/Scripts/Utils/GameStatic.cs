@@ -18,12 +18,15 @@ namespace DeliveryMultiverse
         public static int DeliveriesCompletedToday;
         public static int TotalTipsEarnedToday;
         public static float TotalTimeTaken;
+        
+        public static float VehicleHealth = 1f; // 0 to 1, where 1 is full health and 0 is destroyed
 
         #endregion
 
         #region CONSTANTS
 
         public const string VehicleTag = "Player";
+        public const string ObstacleTag = "Obstacle";
         public const string DeliveryScorePref = "DeliveryScoreInfo";
 
         #endregion
@@ -33,6 +36,11 @@ namespace DeliveryMultiverse
         // Game Events
         public static UnityAction OnNewDayStarted;
         public static UnityAction OnDayEnded;
+        
+        // Vehicle Events
+        public static UnityAction OnVehicleCollidedWithObstacle;
+        public static UnityAction OnVehicleCollectedRepairKit;
+        public static UnityAction OnVehicleDestroyed;
 
         // Biome Events
         public static UnityAction<BiomeType> OnBiomeChanged;
@@ -51,6 +59,8 @@ namespace DeliveryMultiverse
         
         // Player UI Events
         public static UnityAction OnNextDayButtonPressed;
+        public static UnityAction OnRestartDayButtonPressed;
+        public static UnityAction OnResignButtonPressed;
 
         #endregion
 
@@ -65,6 +75,7 @@ namespace DeliveryMultiverse
             CurrentDayNumber = LoadDeliveryScores().scores.Count;
             TotalTipsEarnedToday = 0;
             TotalTimeTaken = 0f;
+            VehicleHealth = 1f;
         }
         
         public static void SaveDeliveryScore()

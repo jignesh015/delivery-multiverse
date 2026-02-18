@@ -13,12 +13,16 @@ namespace DeliveryMultiverse
             GameStatic.ResetGameState();
             GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
             GameStatic.OnNextDayButtonPressed += StartNewDay;
+            GameStatic.OnVehicleDestroyed += OnVehicleDestroyed;
+            GameStatic.OnRestartDayButtonPressed += StartNewDay;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
             GameStatic.OnNextDayButtonPressed -= StartNewDay;
+            GameStatic.OnVehicleDestroyed -= OnVehicleDestroyed;
+            GameStatic.OnRestartDayButtonPressed -= StartNewDay;
         }
 
         private void Start()
@@ -68,6 +72,12 @@ namespace DeliveryMultiverse
             {
                 EndCurrentDay();
             }
+        }
+
+        private void OnVehicleDestroyed()
+        {
+            GameStatic.IsDayActive = false;
+            GameStatic.CurrentDayNumber--;
         }
         
 
