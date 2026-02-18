@@ -24,15 +24,13 @@ namespace DeliveryMultiverse
         
         
         // Delivery Point Events
-        public static UnityAction OnDeliveryPointsRequested;
-        public static UnityAction<Queue<DeliveryPoint>> OnDeliveryPointsQueued;
+        public static UnityAction OnDeliveryPointRequested;
         public static UnityAction<DeliveryPoint> OnDeliveryPointAssigned;
         public static UnityAction<DeliveryPoint> OnPlayerEnteredDeliveryPoint;
         public static UnityAction<DeliveryPoint> OnPlayerExitedDeliveryPoint;
         public static UnityAction<DeliveryPoint, bool> OnPlayerStoppedAtDeliveryPoint;
         public static UnityAction<DeliveryPoint> OnPlayerInteractedWithDeliveryPoint;
         public static UnityAction<DeliveryPoint, int> OnDeliveryCompleted; // float parameter is the tip amount earned
-        public static UnityAction OnAllDeliveriesCompleted;
         
         public static UnityAction<DeliveryPoint, bool> OnDeliveryPointVisibleOnScreen;
         

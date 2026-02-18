@@ -1778,7 +1778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd51b187d244b37848273f3c009a906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.DeliveryPointManager
-  maxDeliveryPoints: 5
 --- !u!1 &1141476161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,7 +2583,7 @@ MonoBehaviour:
   tipAmountColor: {r: 0, g: 1, b: 0, a: 1}
   leftAction: {fileID: -5330772876678221345, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightAction: {fileID: 3493134841802991874, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  gameDuration: 15
+  gameDuration: 10
   delayBeforeEnd: 2
   biomeSpecificSettings:
   - biomeType: 0
