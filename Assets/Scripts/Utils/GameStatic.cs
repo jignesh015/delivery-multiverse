@@ -14,9 +14,10 @@ namespace DeliveryMultiverse
         public static bool IsDayActive;
 
         public static int CurrentDayNumber;
+        public static int DeliveriesToCompleteToday;
         public static int DeliveriesCompletedToday;
         public static int TotalTipsEarnedToday;
-        public static float TimeRemainingInDay;
+        public static float TotalTimeTaken;
 
         #endregion
 
@@ -62,16 +63,15 @@ namespace DeliveryMultiverse
             IsPlayingMinigame = false;
             IsDayActive = false;
             CurrentDayNumber = LoadDeliveryScores().scores.Count;
-            DeliveriesCompletedToday = 0;
             TotalTipsEarnedToday = 0;
-            TimeRemainingInDay = 0f;
+            TotalTimeTaken = 0f;
         }
         
         public static void SaveDeliveryScore()
         {
             var scoreInfo = new DeliveryScoreInfo
             {
-                deliveriesCompleted = DeliveriesCompletedToday,
+                totalTimeTaken = TotalTimeTaken,
                 totalTipsEarned = TotalTipsEarnedToday
             };
 
@@ -79,7 +79,7 @@ namespace DeliveryMultiverse
             scoreInfoList.scores.Add(scoreInfo);
             var json = JsonUtility.ToJson(scoreInfoList);
             PlayerPrefs.SetString(DeliveryScorePref, json);
-            Debug.Log($"Saved delivery score: {scoreInfo.deliveriesCompleted} deliveries, {scoreInfo.totalTipsEarned} tips");
+            Debug.Log($"Saved delivery score: {scoreInfo.totalTimeTaken} deliveries, {scoreInfo.totalTipsEarned} tips");
         }
         
         public static DeliveryScoreInfoList LoadDeliveryScores()

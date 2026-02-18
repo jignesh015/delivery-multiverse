@@ -5,7 +5,8 @@ namespace DeliveryMultiverse
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private int timePerRound = 180;
+        [SerializeField] private Vector2Int deliveriesPerDayRange = new Vector2Int(5, 7);
+        
         
         private void Awake()
         {
@@ -33,17 +34,17 @@ namespace DeliveryMultiverse
             if(GameStatic.IsPlayingMinigame)
                 return;
             
-            GameStatic.TimeRemainingInDay -= Time.deltaTime;
-            if (GameStatic.TimeRemainingInDay > 0) return;
-            EndCurrentDay();
+            GameStatic.TotalTimeTaken += Time.deltaTime;
         }
 
         private void StartNewDay()
         {
             GameStatic.CurrentDayNumber++;
+            GameStatic.DeliveriesToCompleteToday = UnityEngine.Random.Range(deliveriesPerDayRange.x, deliveriesPerDayRange.y + 1);
+            
+            GameStatic.TotalTimeTaken = 0 ;
             GameStatic.TotalTipsEarnedToday = 0;
             GameStatic.DeliveriesCompletedToday = 0;
-            GameStatic.TimeRemainingInDay = timePerRound;
             
             GameStatic.IsDayActive = true;
             GameStatic.OnNewDayStarted?.Invoke();
@@ -52,9 +53,8 @@ namespace DeliveryMultiverse
         private void EndCurrentDay()
         {
             GameStatic.IsDayActive = false;
-            GameStatic.TimeRemainingInDay = 0;
-            GameStatic.OnDayEnded?.Invoke();
             GameStatic.SaveDeliveryScore();
+            GameStatic.OnDayEnded?.Invoke();
         }
 
         #region Event Handlers
@@ -63,6 +63,11 @@ namespace DeliveryMultiverse
         {
             GameStatic.DeliveriesCompletedToday++;
             GameStatic.TotalTipsEarnedToday += tipAmount;
+            
+            if (GameStatic.DeliveriesCompletedToday >= GameStatic.DeliveriesToCompleteToday)
+            {
+                EndCurrentDay();
+            }
         }
         
 

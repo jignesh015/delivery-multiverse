@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,37 +12,30 @@ namespace DeliveryMultiverse
     {
         [Header("References")]
         [SerializeField] private TextMeshProUGUI dayText;
-        [SerializeField] private TextMeshProUGUI timeRemainingText;
+        [SerializeField] private TextMeshProUGUI timeTakenText;
         [SerializeField] private TextMeshProUGUI deliveriesCompletedText;
         [SerializeField] private TextMeshProUGUI tipsEarnedText;
-        
-        [Space(20)]
-        [SerializeField] private float lowTimeThreshold = 10f;
-        [SerializeField] private Color timeRemainingNormalColor = Color.yellow;
-        [SerializeField] private Color timeRemainingLowColor = Color.red;
-        [SerializeField] private float timeTextPunchScale = 0.3f;
-        [SerializeField] private float timeTextPunchScaleDuration = 0.25f;
-        [SerializeField] private int timeTextPunchScaleVibrato = 1;
+        [SerializeField] private Color textHighlightColor = Color.green;
         
         private CanvasGroup m_CanvasGroup;
-        private Vector3 m_OriginalTimeTextScale;
-        private bool m_IsLowTimeWarningActive = false;
-        private Tween m_TimeTextTween;
+        private string m_TextHighlightColorHex;
 
         private void Awake()
         {
-            m_OriginalTimeTextScale = timeRemainingText.transform.localScale;
             TryGetComponent(out m_CanvasGroup);
             ToggleCanvasGroup(false);
+            m_TextHighlightColorHex = ColorUtility.ToHtmlStringRGB(textHighlightColor);
             
             GameStatic.OnNewDayStarted += OnNewDayStarted;
             GameStatic.OnDayEnded += OnDayEnded;
+            GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnNewDayStarted -= OnNewDayStarted;
             GameStatic.OnDayEnded -= OnDayEnded;
+            GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
         }
 
         private void Update()
@@ -49,65 +43,41 @@ namespace DeliveryMultiverse
             if(m_CanvasGroup.alpha == 0f)
                 return;
             
-            UpdateUI();
+            UpdateTimer();
         }
-        
-        private void UpdateUI()
+
+        private void UpdateTimer()
         {
-            dayText.text = $"{GameStatic.CurrentDayNumber}";
-            var totalSeconds = Mathf.CeilToInt(GameStatic.TimeRemainingInDay);
+            var totalSeconds = Mathf.CeilToInt(GameStatic.TotalTimeTaken);
             var minutes = totalSeconds / 60;
             var seconds = totalSeconds % 60;
-            timeRemainingText.text = $"{minutes}:{seconds:D2}";
-            deliveriesCompletedText.text = $"{GameStatic.DeliveriesCompletedToday}";
-            tipsEarnedText.text = $"${GameStatic.TotalTipsEarnedToday}";
-
-            // Low time color and tween logic
-            if (GameStatic.TimeRemainingInDay <= lowTimeThreshold)
+            timeTakenText.text = $"{minutes}:{seconds:D2}";
+        }
+        
+        private IEnumerator UpdateUI()
+        {
+            for (var i = 0; i < 3; i++)
             {
-                if (!m_IsLowTimeWarningActive)
-                {
-                    m_IsLowTimeWarningActive = true;
-                    timeRemainingText.color = timeRemainingLowColor;
-                    // Kill any running tween
-                    m_TimeTextTween?.Kill();
-                    // Punch scale tween
-                    m_TimeTextTween = timeRemainingText.transform.DOPunchScale(
-                        Vector3.one * timeTextPunchScale,
-                        timeTextPunchScaleDuration,
-                        timeTextPunchScaleVibrato,
-                        0f
-                    );
-                }
-            }
-            else
-            {
-                if (m_IsLowTimeWarningActive)
-                {
-                    m_IsLowTimeWarningActive = false;
-                    timeRemainingText.color = timeRemainingNormalColor;
-                    timeRemainingText.transform.localScale = m_OriginalTimeTextScale;
-                    m_TimeTextTween?.Kill();
-                }
+                dayText.text = $"{GameStatic.CurrentDayNumber}";
+                deliveriesCompletedText.text = $"{GameStatic.DeliveriesCompletedToday}/<color=#{m_TextHighlightColorHex}>{GameStatic.DeliveriesToCompleteToday}</color>";
+                tipsEarnedText.text = $"${GameStatic.TotalTipsEarnedToday}";
+                yield return null;
             }
         }
 
         private void OnNewDayStarted()
         {
-            timeRemainingText.color = timeRemainingNormalColor;
-            timeRemainingText.transform.localScale = m_OriginalTimeTextScale;
-            m_IsLowTimeWarningActive = false;
-            m_TimeTextTween?.Kill();
-            
+            StartCoroutine(UpdateUI());
             ToggleCanvasGroup(true);
+        }
+
+        private void OnDeliveryCompleted(DeliveryPoint deliveryPoint, int tipAmount)
+        {
+            StartCoroutine(UpdateUI());
         }
 
         private void OnDayEnded()
         {
-            if (m_TimeTextTween != null && m_TimeTextTween.IsActive())
-            {
-                m_TimeTextTween.Kill();
-            }
             ToggleCanvasGroup(false);
         }
         
