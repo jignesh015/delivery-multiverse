@@ -171,6 +171,12 @@ namespace DeliveryMultiverse
         {
             // Only check if UI is supposed to be visible
             if (!m_CanvasGroup || !Mathf.Approximately(m_CanvasGroup.alpha, 1f)) return;
+
+            if (Mathf.Approximately(m_CanvasGroup.alpha, 1f) && GameStatic.CurrentDeliveryPoint != m_DeliveryPoint)
+            {
+                ToggleUIVisibility(false);
+                return;
+            }
             
             var isVisible = IsUIVisibleOnScreen();
             if (isVisible == m_IsOnScreen) return;

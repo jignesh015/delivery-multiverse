@@ -6,7 +6,7 @@ namespace DeliveryMultiverse
     [Serializable]
     public class DeliveryScoreInfo
     {
-        public int deliveriesCompleted;
+        public float totalTimeTaken;
         public int totalTipsEarned;
     }
 
