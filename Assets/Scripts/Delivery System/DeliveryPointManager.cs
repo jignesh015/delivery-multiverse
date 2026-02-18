@@ -66,7 +66,7 @@ namespace DeliveryMultiverse
             GameStatic.OnDeliveryPointAssigned?.Invoke(firstPoint);
         }
 
-        private void OnDeliveryCompleted(DeliveryPoint deliveryPoint)
+        private void OnDeliveryCompleted(DeliveryPoint deliveryPoint, int tipAmount)
         {
             if (GameStatic.CurrentDeliveryPoint != deliveryPoint) return;
             
