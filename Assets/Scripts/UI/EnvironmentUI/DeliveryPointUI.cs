@@ -44,6 +44,7 @@ namespace DeliveryMultiverse
             GameStatic.OnPlayerExitedDeliveryPoint += OnPlayerExitedDeliveryPoint;
             GameStatic.OnPlayerStoppedAtDeliveryPoint += OnPlayerStoppedAtDeliveryPoint;
             GameStatic.OnPlayerInteractedWithDeliveryPoint += OnPlayerInteractedWithDeliveryPoint;
+            GameStatic.OnDayEnded += OnDayEnded;
         }
 
         private void OnDestroy()
@@ -53,6 +54,7 @@ namespace DeliveryMultiverse
             GameStatic.OnPlayerExitedDeliveryPoint -= OnPlayerExitedDeliveryPoint;
             GameStatic.OnPlayerStoppedAtDeliveryPoint -= OnPlayerStoppedAtDeliveryPoint;
             GameStatic.OnPlayerInteractedWithDeliveryPoint -= OnPlayerInteractedWithDeliveryPoint;
+            GameStatic.OnDayEnded -= OnDayEnded;
         }
 
         private void Start()
@@ -111,6 +113,15 @@ namespace DeliveryMultiverse
             ToggleInteractIndicator(false);
             ToggleUIVisibility(false);
         }
+
+        private void OnDayEnded()
+        {
+            TogglePinPointTween(false);
+            ToggleStopIndicator(false);
+            ToggleInteractIndicator(false);
+            ToggleUIVisibility(false);
+        }
+        
         
         private void TogglePinPointTween(bool activate)
         {

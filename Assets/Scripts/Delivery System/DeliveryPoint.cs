@@ -10,11 +10,18 @@ namespace DeliveryMultiverse
         private void Awake()
         {
             GameStatic.OnPlayerPressedInteract += OnPlayerPressedInteract;
+            GameStatic.OnDayEnded += OnDayEnded;
         }
 
         private void OnDestroy()
         {
             GameStatic.OnPlayerPressedInteract -= OnPlayerPressedInteract;
+            GameStatic.OnDayEnded -= OnDayEnded;
+        }
+
+        private void OnDayEnded()
+        {
+            hasVehicleStoppedHere = false;
         }
 
         private void OnPlayerPressedInteract()

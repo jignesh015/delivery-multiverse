@@ -64,14 +64,14 @@ namespace DeliveryMultiverse
 
         private void Update()
         {
-            if(GameStatic.IsPlayingMinigame) return;
+            if(!GameStatic.IsDayActive || GameStatic.IsPlayingMinigame) return;
             
             HandleInput();
         }
 
         private void FixedUpdate()
         {
-            if(GameStatic.IsPlayingMinigame) return;
+            if(!GameStatic.IsDayActive || GameStatic.IsPlayingMinigame) return;
             
             HandleMovement();
             ApplyGravity();

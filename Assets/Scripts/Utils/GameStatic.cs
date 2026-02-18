@@ -11,6 +11,7 @@ namespace DeliveryMultiverse
         public static DeliveryPoint CurrentDeliveryPoint;
         public static BiomeType CurrentBiome;
         public static bool IsPlayingMinigame;
+        public static bool IsDayActive;
 
         public static int CurrentDayNumber;
         public static int DeliveriesCompletedToday;
@@ -46,6 +47,9 @@ namespace DeliveryMultiverse
 
         // Player Interaction Events
         public static UnityAction OnPlayerPressedInteract;
+        
+        // Player UI Events
+        public static UnityAction OnNextDayButtonPressed;
 
         #endregion
 
@@ -56,6 +60,7 @@ namespace DeliveryMultiverse
             CurrentDeliveryPoint = null;
             CurrentBiome = BiomeType.Normal;
             IsPlayingMinigame = false;
+            IsDayActive = false;
             CurrentDayNumber = LoadDeliveryScores().scores.Count;
             DeliveriesCompletedToday = 0;
             TotalTipsEarnedToday = 0;
