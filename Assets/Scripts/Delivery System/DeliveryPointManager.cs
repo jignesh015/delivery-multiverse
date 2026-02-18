@@ -13,13 +13,13 @@ namespace DeliveryMultiverse
         
         private void Awake()
         {
-            GameStatic.OnDeliveryPointRequested += OnDeliveryPointsRequested;
+            GameStatic.OnNewDayStarted += OnDeliveryPointsRequested;
             GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
         }
 
         private void OnDestroy()
         {
-            GameStatic.OnDeliveryPointRequested -= OnDeliveryPointsRequested;
+            GameStatic.OnNewDayStarted -= OnDeliveryPointsRequested;
             GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
         }
 
