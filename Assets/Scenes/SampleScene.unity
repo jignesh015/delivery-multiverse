@@ -11122,8 +11122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd61ffd074bb460b82a89b8b42b9f1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.VehicleHealthManager
-  minHealthDecreaseOnCollision: 0.1
-  maxHealthDecreaseOnCollision: 0.2
+  minHealthDecreaseOnCollision: 0.05
+  maxHealthDecreaseOnCollision: 0.15
   immunityDurationAfterCollision: 0.5
   minValidHealth: 0.1
 --- !u!1 &2034139246

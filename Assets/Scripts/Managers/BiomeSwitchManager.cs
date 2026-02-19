@@ -18,11 +18,21 @@ namespace DeliveryMultiverse
         private void Awake()
         {
             GameStatic.OnNewDayStarted += OnNewDayStarted;
+            GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
         }
         
         private void OnDestroy()
         {
             GameStatic.OnNewDayStarted -= OnNewDayStarted;
+            GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
+        }
+
+        private void OnDeliveryCompleted(DeliveryPoint arg0, int arg1)
+        {
+            var biomeTypes = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
+            biomeTypes.Remove(GameStatic.CurrentBiome);
+            var nextBiome = biomeTypes[UnityEngine.Random.Range(0, biomeTypes.Count)];
+            SwitchBiome(nextBiome);
         }
 
         private void OnNewDayStarted()
