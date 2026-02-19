@@ -1038,10 +1038,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.PropPlacementManager
   propPlacementZones: []
   repairKitPrefab: {fileID: 1247503953045037684, guid: f08ead563b024934f994d63743e250d1, type: 3}
-  propObstaclePrefabs: []
+  propObstaclePrefabs:
+  - {fileID: 5815867404012299547, guid: d18d8f21bc49eb443b6647974430f144, type: 3}
+  - {fileID: 5815867404012299547, guid: 2f7d11e1f17cf4f41bf5f8b9ca44c285, type: 3}
+  - {fileID: 5815867404012299547, guid: 909499421cbf8fb4a86b3bf6fda47bb5, type: 3}
   repairKitsPerDay: 3
   obstalcePoolSize: 10
-  propObstacleSpawnRange: {x: 3, y: 6}
+  propObstacleSpawnRange: {x: 10, y: 15}
   spawnPositionYOffset: 0
 --- !u!1 &255357037
 GameObject:
@@ -96368,8 +96371,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.9137983, y: 1, z: 1}
+  m_Center: {x: -0.45689905, y: 0, z: 0}
 --- !u!4 &7851510659569577329
 Transform:
   m_ObjectHideFlags: 0
@@ -108247,8 +108250,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.6913876}
+  m_Center: {x: 1.0200225e-15, y: 0, z: -0.15430658}
 --- !u!4 &8998960142167533361
 Transform:
   m_ObjectHideFlags: 0

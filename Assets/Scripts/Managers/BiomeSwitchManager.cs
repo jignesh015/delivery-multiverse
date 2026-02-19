@@ -15,7 +15,17 @@ namespace DeliveryMultiverse
         [SerializeField] private InputActionReference inputActionBiome2;
         [SerializeField] private InputActionReference inputActionBiome3;
 
-        private void Start()
+        private void Awake()
+        {
+            GameStatic.OnNewDayStarted += OnNewDayStarted;
+        }
+        
+        private void OnDestroy()
+        {
+            GameStatic.OnNewDayStarted -= OnNewDayStarted;
+        }
+
+        private void OnNewDayStarted()
         {
             SwitchBiome(BiomeType.Normal);
         }
