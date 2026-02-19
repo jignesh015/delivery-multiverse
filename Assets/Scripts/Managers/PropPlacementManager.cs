@@ -157,7 +157,7 @@ namespace DeliveryMultiverse
 
         private void OnBiomeChanged(BiomeType biomeType)
         {
-            // SpawnPropObstacles(biomeType);
+            SpawnPropObstacles(biomeType);
         }
     }
 }
