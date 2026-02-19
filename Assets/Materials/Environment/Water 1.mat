@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water 1
-  m_Shader: {fileID: -6465566751694194690, guid: 8eef88ae773ef5f4dbe4da56da89303b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d17a14960bf347545ad50aa79b9012e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -31,7 +31,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -101,11 +101,11 @@ Material:
     - _CaveBlend: 0
     - _CaveDistortion: 0
     - _DepthCompareDistance: 0.1
-    - _DepthFadeDistance: 4
+    - _DepthFadeDistance: 14
     - _FoamBlend: 0.09
     - _FresnelPower: 1
     - _GradientRefractionScale: 10
-    - _HorizonDistance: 45
+    - _HorizonDistance: 33.2
     - _IntersectionFoamBlend: 1.09
     - _IntersectionFoamCutoff: 3.57
     - _IntersectionFoamDepth: 2.43
@@ -132,14 +132,14 @@ Material:
     - _RippleStrength: 83.62
     - _SecondaryFoamBlend: 0.06
     - _SkyboxForce: 2.5
-    - _Steps: 2
+    - _Steps: 1
     - _SurfaceFoamDirection: 0
     - _SurfaceFoamDistorsion: 0.38
     - _SurfaceFoamSpeed: 0
     - _SurfaceFoamTiling: 0.53
     - _TileSize: 200
     - _WORLD_SPACE_UV: 1
-    - _WaterAlpha: 1
+    - _WaterAlpha: 0.825
     - _WaterMetallic: 0.559
     - _WaterSmoothness: 0.581
     - _WaveLength: 1.82
@@ -159,9 +159,9 @@ Material:
     - _IntersectionFoamColor: {r: 1.1486984, g: 1.1486984, b: 1.1486984, a: 1}
     - _PositionRipples: {r: 0, g: 0, b: 0, a: 0}
     - _SecondaryFoamColor: {r: 0, g: 0, b: 0, a: 0.40784314}
-    - _ShallowColor: {r: 0, g: 0.57150817, b: 0.7056604, a: 1}
+    - _ShallowColor: {r: 0, g: 0.9942417, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0.31764707}
-    - _SurfaceFoamColor: {r: 2.2868972, g: 2.2868972, b: 2.2868972, a: 0.2784314}
+    - _SurfaceFoamColor: {r: 4.237095, g: 4.237095, b: 4.237095, a: 0.2784314}
     - _TopColor: {r: 0, g: 0.17848217, b: 0.5622641, a: 0.44705883}
     - _UV: {r: 0, g: 0, b: 0, a: 0}
     - _UVRipples: {r: 0, g: 0, b: 0, a: 0}
