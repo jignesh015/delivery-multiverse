@@ -36,13 +36,16 @@ namespace DeliveryMultiverse
                 return; // Still in immunity period, ignore this collision
             
             m_LastCollisionTime = Time.time;
+
+            var healthDecrease = minHealthDecreaseOnCollision;
+            if(!other.gameObject.TryGetComponent(out PropObstacle propObstacle))
+            {
+                var collisionImpact = other.relativeVelocity.magnitude;
+                healthDecrease = Mathf.Lerp(minHealthDecreaseOnCollision, maxHealthDecreaseOnCollision, collisionImpact / 10f);
+            }
             
-            var collisionImpact = other.relativeVelocity.magnitude;
-            var healthDecrease = Mathf.Lerp(minHealthDecreaseOnCollision, maxHealthDecreaseOnCollision, collisionImpact / 10f);
             GameStatic.VehicleHealth = Mathf.Max(0, GameStatic.VehicleHealth - healthDecrease);
             GameStatic.OnVehicleCollidedWithObstacle?.Invoke();
-            
-            Debug.Log($"Vehicle collided with {other.collider.name}. Impact: {collisionImpact:F2}, Health Decrease: {healthDecrease:F2}, Remaining Health: {GameStatic.VehicleHealth:F2}");
             
             if (GameStatic.VehicleHealth < minValidHealth)
             {

@@ -15,6 +15,7 @@ namespace DeliveryMultiverse
         
         private Rigidbody m_Rigidbody;
         private Collider m_Collider;
+        private Collider m_VisualCollider; 
 
         private Vector3 m_InitialVisualScale;
         private Quaternion m_InitialRotation;
@@ -25,6 +26,8 @@ namespace DeliveryMultiverse
             TryGetComponent(out m_Collider);
             m_InitialVisualScale = visualTransform.localScale;
             m_InitialRotation = transform.rotation;
+            
+            m_VisualCollider = visualTransform.GetComponentInChildren<Collider>();
         }
 
         private void OnEnable()
@@ -34,6 +37,7 @@ namespace DeliveryMultiverse
                 m_Rigidbody.linearVelocity = Vector3.zero;
                 m_Rigidbody.angularVelocity = Vector3.zero;
                 m_Rigidbody.WakeUp();
+                m_Rigidbody.useGravity = true;
                 Invoke(nameof(ResetIsKinematic), 0.1f); // Delay to ensure physics system is ready
             }
             if (m_Collider)
@@ -51,6 +55,10 @@ namespace DeliveryMultiverse
             {
                 m_Rigidbody.isKinematic = false;
             }
+            if (m_VisualCollider)
+            {
+                m_VisualCollider.enabled = false;
+            }
         }
 
         private void OnCollisionEnter(Collision other)
@@ -61,9 +69,19 @@ namespace DeliveryMultiverse
             {
                 m_Collider.enabled = false;
             }
+            
+            if (m_VisualCollider)
+            {
+                m_VisualCollider.enabled = true;
+            }
 
             if (m_Rigidbody && other.contactCount > 0)
             {
+                if (biomeType == BiomeType.Space)
+                {
+                    m_Rigidbody.useGravity = false;
+                }
+                
                 var contact = other.GetContact(0);
                 var collisionDirection = contact.normal;
                 var collisionImpact = other.relativeVelocity.magnitude;
@@ -122,6 +140,7 @@ namespace DeliveryMultiverse
                 m_Rigidbody.angularVelocity = Vector3.zero;
                 m_Rigidbody.Sleep();
                 m_Rigidbody.isKinematic = true;
+                m_Rigidbody.useGravity = true; 
             }
             
             // Reset rotation before returning to pool
