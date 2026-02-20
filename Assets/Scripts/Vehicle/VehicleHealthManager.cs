@@ -38,14 +38,15 @@ namespace DeliveryMultiverse
             m_LastCollisionTime = Time.time;
 
             var healthDecrease = minHealthDecreaseOnCollision;
-            if(!other.gameObject.TryGetComponent(out PropObstacle propObstacle))
+            var isPropObstacle = other.gameObject.TryGetComponent(out PropObstacle _);
+            if(!isPropObstacle)
             {
                 var collisionImpact = other.relativeVelocity.magnitude;
                 healthDecrease = Mathf.Lerp(minHealthDecreaseOnCollision, maxHealthDecreaseOnCollision, collisionImpact / 10f);
             }
             
             GameStatic.VehicleHealth = Mathf.Max(0, GameStatic.VehicleHealth - healthDecrease);
-            GameStatic.OnVehicleCollidedWithObstacle?.Invoke();
+            GameStatic.OnVehicleCollidedWithObstacle?.Invoke(isPropObstacle);
             
             if (GameStatic.VehicleHealth < minValidHealth)
             {
