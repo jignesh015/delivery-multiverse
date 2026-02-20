@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 
 namespace DeliveryMultiverse
 {
@@ -10,6 +11,7 @@ namespace DeliveryMultiverse
         [SerializeField] private Transform visualTransform;
         [SerializeField] private float bobbingAmplitude = 0.25f;
         [SerializeField] private float bobbingFrequency = 1f;
+        [SerializeField] private MMF_Player collectFeedback;
         
         private Vector3 m_InitialVisualPosition;
         private Vector3 m_InitialVisualScale;
@@ -18,6 +20,11 @@ namespace DeliveryMultiverse
         {
             m_InitialVisualPosition = visualTransform.localPosition;
             m_InitialVisualScale = visualTransform.localScale;
+            
+            if (collectFeedback)
+            {
+                collectFeedback.Initialization();
+            }
         }
 
         private void OnEnable()
@@ -38,6 +45,11 @@ namespace DeliveryMultiverse
             
             GameStatic.VehicleHealth = Mathf.Min(1, GameStatic.VehicleHealth + healAmount);
             GameStatic.OnVehicleCollectedRepairKit?.Invoke();
+            
+            if (collectFeedback)
+            {
+                collectFeedback.PlayFeedbacks();
+            }
 
             visualTransform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
             {
