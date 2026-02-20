@@ -14558,6 +14558,11 @@ MonoBehaviour:
     NoiseShiftMin: {x: 0, y: 0, z: 0}
     NoiseShiftMax: {x: 0, y: 0, z: 0}
   DebugWiggleDuration: 2
+--- !u!4 &1422966654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5861409178561632961, guid: 58bf7986299a7724ab23d380bf5a42c1, type: 3}
+  m_PrefabInstance: {fileID: 1337221766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1423025390
 GameObject:
   m_ObjectHideFlags: 0
@@ -18838,6 +18843,7 @@ GameObject:
   - component: {fileID: 2024358469}
   - component: {fileID: 2024358473}
   - component: {fileID: 2024358474}
+  - component: {fileID: 2024358475}
   m_Layer: 0
   m_Name: '[DeliveryVan]'
   m_TagString: Player
@@ -18990,6 +18996,23 @@ MonoBehaviour:
     feedback: {fileID: 692092961}
   - biomeType: 2
     feedback: {fileID: 23047126}
+--- !u!114 &2024358475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024358467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4480eb92a84473f97a084a53c584639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.SpaceRollVFX
+  vehicleRigidbody: {fileID: 2024358470}
+  targetTransform: {fileID: 1422966654}
+  maxRollAngle: 25
+  rollSpeed: 5
+  yawSensitivity: 60
 --- !u!1 &2034139246
 GameObject:
   m_ObjectHideFlags: 0
