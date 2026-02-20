@@ -17,11 +17,15 @@ namespace DeliveryMultiverse
         }
         
         [SerializeField] private List<BiomeFeedback> biomeFeedbacks;
+        [SerializeField] private Transform visualTransform;
         
         private BiomeFeedback m_CurrentBiomeFeedback;
+        private Vector3 m_InitialVisualPosition;
 
         private void Awake()
         {
+            m_InitialVisualPosition = visualTransform.localPosition;
+            
             GameStatic.OnBiomeChanged += OnBiomeChanged;
             GameStatic.OnVehicleCollidedWithObstacle += OnVehicleCollidedWithObstacle;
         }
@@ -48,6 +52,7 @@ namespace DeliveryMultiverse
             {
                 m_CurrentBiomeFeedback?.feedback.PlayFeedbacks();
             }
+            visualTransform.localPosition = m_InitialVisualPosition;
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
