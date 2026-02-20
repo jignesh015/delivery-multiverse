@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a1072073414830ac0d6729d6494930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.RepairKit
+  healAmount: 0.5
   visualTransform: {fileID: 7641142168755491372}
   bobbingAmplitude: 0.25
   bobbingFrequency: 2
