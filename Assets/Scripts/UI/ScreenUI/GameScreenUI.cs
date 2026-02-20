@@ -49,7 +49,7 @@ namespace DeliveryMultiverse
             GameStatic.OnNewDayStarted += OnNewDayStarted;
             GameStatic.OnDayEnded += OnDayEnded;
             GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
-            GameStatic.OnVehicleCollidedWithObstacle += UpdateHealthBar;
+            GameStatic.OnVehicleCollidedWithObstacle += OnVehicleCollidedWithObstacle;
             GameStatic.OnVehicleCollectedRepairKit += UpdateHealthBar;
         }
 
@@ -58,7 +58,7 @@ namespace DeliveryMultiverse
             GameStatic.OnNewDayStarted -= OnNewDayStarted;
             GameStatic.OnDayEnded -= OnDayEnded;
             GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
-            GameStatic.OnVehicleCollidedWithObstacle -= UpdateHealthBar;
+            GameStatic.OnVehicleCollidedWithObstacle -= OnVehicleCollidedWithObstacle;
             GameStatic.OnVehicleCollectedRepairKit -= UpdateHealthBar;
         }
 
@@ -124,6 +124,12 @@ namespace DeliveryMultiverse
         private void OnDeliveryCompleted(DeliveryPoint deliveryPoint, int tipAmount)
         {
             StartCoroutine(UpdateUI());
+        }
+        
+
+        private void OnVehicleCollidedWithObstacle(bool arg0)
+        {
+            UpdateHealthBar();
         }
 
         private void OnDayEnded()

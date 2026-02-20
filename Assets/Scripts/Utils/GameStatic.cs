@@ -39,7 +39,7 @@ namespace DeliveryMultiverse
         public static UnityAction OnDayEnded;
         
         // Vehicle Events
-        public static UnityAction OnVehicleCollidedWithObstacle;
+        public static UnityAction<bool> OnVehicleCollidedWithObstacle; // bool parameter indicates if the vehicle collided with prop obstacle
         public static UnityAction OnVehicleCollectedRepairKit;
         public static UnityAction OnVehicleDestroyed;
 
