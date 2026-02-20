@@ -117,7 +117,7 @@ namespace DeliveryMultiverse
         private void OnNewDayStarted()
         {
             StartCoroutine(UpdateUI());
-            UpdateHealthBar();
+            Invoke(nameof(UpdateHealthBar), 0.1f);
             ToggleCanvasGroup(true);
         }
 

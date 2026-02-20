@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f2f1a796404675a0f6b96b7232484e, type: 3}
   m_Name: DefaultVehicleConfig
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.VehicleConfig
-  maxSpeed: 100
+  biomeType: 0
+  maxSpeed: 25
   reverseSpeedFactor: 1
   acceleration: 40
   drag: 2
