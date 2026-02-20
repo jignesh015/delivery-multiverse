@@ -97,6 +97,7 @@ namespace DeliveryMultiverse
             m_ExtraLateralDrift = config.extraLateralDrift;
 
             m_Rb.linearDamping = m_Drag;
+            GameStatic.CurrentVehicleConfig = config;
         }
 
         private void HandleInput()
