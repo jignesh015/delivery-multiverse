@@ -12,6 +12,7 @@ namespace DeliveryMultiverse
         public static BiomeType CurrentBiome;
         public static bool IsPlayingMinigame;
         public static bool IsDayActive;
+        public static VehicleConfig CurrentVehicleConfig;
 
         public static int CurrentDayNumber;
         public static int DeliveriesToCompleteToday;
@@ -69,6 +70,7 @@ namespace DeliveryMultiverse
         public static void ResetGameState()
         {
             CurrentDeliveryPoint = null;
+            CurrentVehicleConfig = null;
             CurrentBiome = BiomeType.Normal;
             IsPlayingMinigame = false;
             IsDayActive = false;

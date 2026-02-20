@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 
 namespace DeliveryMultiverse
 {
@@ -12,6 +13,9 @@ namespace DeliveryMultiverse
         [SerializeField] private float collisionForceMultiplier = 1f;
         [SerializeField] private float upwardForceMultiplier = 0.5f;
         [SerializeField] private float gravityScale = 1f;
+        [SerializeField] private GameObject vfxObj;
+        [SerializeField] private MMF_Player collisionFeedback;
+        
         
         private Rigidbody m_Rigidbody;
         private Collider m_Collider;
@@ -28,6 +32,11 @@ namespace DeliveryMultiverse
             m_InitialRotation = transform.rotation;
             
             m_VisualCollider = visualTransform.GetComponentInChildren<Collider>();
+            
+            if (collisionFeedback)
+            {
+                collisionFeedback.Initialization();
+            }
         }
 
         private void OnEnable()
@@ -43,6 +52,11 @@ namespace DeliveryMultiverse
             if (m_Collider)
             {
                 m_Collider.enabled = true;
+            }
+            
+            if(vfxObj)
+            {
+                vfxObj.SetActive(true);
             }
 
             visualTransform.localScale = m_InitialVisualScale;
@@ -73,6 +87,16 @@ namespace DeliveryMultiverse
             if (m_VisualCollider)
             {
                 m_VisualCollider.enabled = true;
+            }
+            
+            if(vfxObj)
+            {
+                vfxObj.SetActive(false);
+            }
+            
+            if (collisionFeedback)
+            {
+                collisionFeedback.PlayFeedbacks();
             }
 
             if (m_Rigidbody && other.contactCount > 0)
