@@ -9118,6 +9118,7 @@ MonoBehaviour:
     feedback: {fileID: 6714875846580103220}
     collisionFeedback: {fileID: 7743494219779998473}
   visualTransform: {fileID: 6000967594309767897}
+  deliveryPointInteractSfx: {fileID: 0}
 --- !u!114 &5901119503913244353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9304,7 +9305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.51
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10210,7 +10211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.51
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
       propertyPath: m_LocalRotation.w

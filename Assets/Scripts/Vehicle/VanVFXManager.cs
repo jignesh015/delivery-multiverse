@@ -18,6 +18,7 @@ namespace DeliveryMultiverse
         
         [SerializeField] private List<BiomeFeedback> biomeFeedbacks;
         [SerializeField] private Transform visualTransform;
+        [SerializeField] private AudioSource deliveryPointInteractSfx;
         
         private BiomeFeedback m_CurrentBiomeFeedback;
         private Vector3 m_InitialVisualPosition;
@@ -28,12 +29,19 @@ namespace DeliveryMultiverse
             
             GameStatic.OnBiomeChanged += OnBiomeChanged;
             GameStatic.OnVehicleCollidedWithObstacle += OnVehicleCollidedWithObstacle;
+            GameStatic.OnPlayerInteractedWithDeliveryPoint += OnPlayerInteractedWithDeliveryPoint;
         }
         
         private void OnDestroy()
         {
             GameStatic.OnBiomeChanged -= OnBiomeChanged;
             GameStatic.OnVehicleCollidedWithObstacle -= OnVehicleCollidedWithObstacle;
+            GameStatic.OnPlayerInteractedWithDeliveryPoint -= OnPlayerInteractedWithDeliveryPoint;
+        }
+
+        private void OnPlayerInteractedWithDeliveryPoint(DeliveryPoint arg0)
+        {
+            deliveryPointInteractSfx?.Play();
         }
 
         private void OnVehicleCollidedWithObstacle(bool isPropObstacle)

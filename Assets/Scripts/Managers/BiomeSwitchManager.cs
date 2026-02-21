@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using MoreMountains.Feedbacks;
 using UnityEngine.InputSystem;
 
 namespace DeliveryMultiverse
@@ -9,30 +10,26 @@ namespace DeliveryMultiverse
     public class BiomeSwitchManager : MonoBehaviour
     {
         [SerializeField] private List<BiomeConfig> biomeConfigs = new List<BiomeConfig>();
+        [SerializeField] private Vector2 biomeSwitchIntervalRange = new Vector2(15f, 45f);
+        
+        [Space(10)]
+        [SerializeField] private MMF_Player biomeSwitchFeedback;
         
         [Header("Input Actions for Testing (Editor Only)")]
         [SerializeField] private InputActionReference inputActionBiome1;
         [SerializeField] private InputActionReference inputActionBiome2;
         [SerializeField] private InputActionReference inputActionBiome3;
 
+        private float nextBiomeSwitchTime = -1f;
+        
         private void Awake()
         {
             GameStatic.OnNewDayStarted += OnNewDayStarted;
-            GameStatic.OnDeliveryCompleted += OnDeliveryCompleted;
         }
         
         private void OnDestroy()
         {
             GameStatic.OnNewDayStarted -= OnNewDayStarted;
-            GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
-        }
-
-        private void OnDeliveryCompleted(DeliveryPoint arg0, int arg1)
-        {
-            var biomeTypes = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
-            biomeTypes.Remove(GameStatic.CurrentBiome);
-            var nextBiome = biomeTypes[UnityEngine.Random.Range(0, biomeTypes.Count)];
-            SwitchBiome(nextBiome);
         }
 
         private void OnNewDayStarted()
@@ -57,6 +54,24 @@ namespace DeliveryMultiverse
                 SwitchBiome(BiomeType.Space);
             }
             #endif
+            
+            if(!GameStatic.CanSwitchBiome || !GameStatic.IsDayActive 
+                || GameStatic.IsPlayingMinigame || Time.timeScale == 0) 
+                return;
+
+            if (Time.time >= nextBiomeSwitchTime)
+            {
+                SwitchBiomeRandomly();
+            }
+        }
+        
+        private void SwitchBiomeRandomly()
+        {
+            var biomeTypes = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
+            biomeTypes.Remove(GameStatic.CurrentBiome);
+            var nextBiome = biomeTypes[UnityEngine.Random.Range(0, biomeTypes.Count)];
+            biomeSwitchFeedback?.PlayFeedbacks();
+            SwitchBiome(nextBiome);
         }
         
         private void SwitchBiome(BiomeType biomeType)
@@ -69,6 +84,9 @@ namespace DeliveryMultiverse
             }
             
             GameStatic.OnBiomeChanged?.Invoke(biomeType);
+            
+            var interval = UnityEngine.Random.Range(biomeSwitchIntervalRange.x, biomeSwitchIntervalRange.y);
+            nextBiomeSwitchTime = Time.time + interval;
         }
     }
     

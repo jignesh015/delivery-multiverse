@@ -13666,10 +13666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[DeliveryVan]'
       objectReference: {fileID: 0}
-    - target: {fileID: 8710415504154478282, guid: a84f08990c6ca854cb04aad71b576ebb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

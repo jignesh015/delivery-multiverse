@@ -16,6 +16,7 @@ namespace DeliveryMultiverse
         
         [SerializeField] private List<BiomeBgm> biomeBgms;
         [SerializeField] private float crossFadeDuration = 1f;
+        [SerializeField] private float targetBGMVolume = 0.5f;
         
         private AudioSource m_CurrentBgm;
         private AudioSource m_PreviousBgm;
@@ -65,14 +66,13 @@ namespace DeliveryMultiverse
             }
             var time = 0f;
             var fromStartVol = from ? from.volume : 0f;
-            const float toTargetVol = 1f;
             while (time < duration)
             {
                 var t = time / duration;
                 if (from)
                     from.volume = Mathf.Lerp(fromStartVol, 0f, t);
                 if (to)
-                    to.volume = Mathf.Lerp(0f, toTargetVol, t);
+                    to.volume = Mathf.Lerp(0f, targetBGMVolume, t);
                 time += Time.deltaTime;
                 yield return null;
             }
@@ -82,7 +82,7 @@ namespace DeliveryMultiverse
                 from.Stop();
             }
             if (to)
-                to.volume = toTargetVol;
+                to.volume = targetBGMVolume;
         }
     }
 }

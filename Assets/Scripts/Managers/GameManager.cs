@@ -8,6 +8,7 @@ namespace DeliveryMultiverse
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private int day1DeliveryCount = 3;
         [SerializeField] private Vector2Int deliveriesPerDayRange = new Vector2Int(5, 7);
         [SerializeField] private MMF_Player goToMenuFeedback;
 
@@ -55,7 +56,7 @@ namespace DeliveryMultiverse
         private void StartNewDay()
         {
             GameStatic.CurrentDayNumber++;
-            GameStatic.DeliveriesToCompleteToday =
+            GameStatic.DeliveriesToCompleteToday = GameStatic.CurrentDayNumber == 1 ? day1DeliveryCount :
                 UnityEngine.Random.Range(deliveriesPerDayRange.x, deliveriesPerDayRange.y + 1);
 
             GameStatic.TotalTimeTaken = 0;
