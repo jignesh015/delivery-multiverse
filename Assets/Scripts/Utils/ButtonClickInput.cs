@@ -8,6 +8,7 @@ namespace DeliveryMultiverse
     public class ButtonClickInput : MonoBehaviour
     {
         [SerializeField] private InputActionReference clickAction;
+        [SerializeField] private AudioSource clickAudioSource;
         
         private Button m_Button;
         
@@ -41,7 +42,8 @@ namespace DeliveryMultiverse
                     return;
                 current = current.parent;
             }
-
+            
+            clickAudioSource?.Play();
             m_Button.onClick.Invoke();
         }
     }
