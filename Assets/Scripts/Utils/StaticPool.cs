@@ -7,7 +7,9 @@ namespace DeliveryMultiverse
 {
     public static class StaticPool
     {
-        private static readonly Dictionary<GameObject, IObjectPool<GameObject>> pools = new Dictionary<GameObject, IObjectPool<GameObject>>();
+        private static readonly Dictionary<GameObject, IObjectPool<GameObject>> Pools = new Dictionary<GameObject, IObjectPool<GameObject>>();
+        // Track active objects per prefab
+        private static readonly Dictionary<GameObject, HashSet<GameObject>> ActiveObjects = new Dictionary<GameObject, HashSet<GameObject>>();
 
         // Create a pool for a given GameObject prefab with initial size
         public static void CreatePool(GameObject prefab, int initialSize = 10, int maxSize = 100)
@@ -15,7 +17,7 @@ namespace DeliveryMultiverse
             if (prefab == null)
                 throw new ArgumentNullException(nameof(prefab), "Prefab cannot be null.");
 
-            if (pools.ContainsKey(prefab))
+            if (Pools.ContainsKey(prefab))
                 return; // Pool already exists
 
             var pool = new ObjectPool<GameObject>(
@@ -35,9 +37,16 @@ namespace DeliveryMultiverse
                 },
                 actionOnGet: (obj) => {
                     obj.SetActive(true);
+                    // Track as active
+                    if (!ActiveObjects.ContainsKey(prefab))
+                        ActiveObjects[prefab] = new HashSet<GameObject>();
+                    ActiveObjects[prefab].Add(obj);
                 },
                 actionOnRelease: (obj) => {
                     obj.SetActive(false);
+                    // Remove from active
+                    if (ActiveObjects.ContainsKey(prefab))
+                        ActiveObjects[prefab].Remove(obj);
                 },
                 actionOnDestroy: (obj) => {
                     if (obj != null)
@@ -48,7 +57,8 @@ namespace DeliveryMultiverse
                 maxSize: maxSize
             );
 
-            pools[prefab] = pool;
+            Pools[prefab] = pool;
+            ActiveObjects[prefab] = new HashSet<GameObject>();
 
             // Pre-warm the pool by creating initial objects
             var temp = new List<GameObject>(initialSize);
@@ -68,12 +78,13 @@ namespace DeliveryMultiverse
             if (prefab == null)
                 throw new ArgumentNullException(nameof(prefab), "Prefab cannot be null.");
 
-            if (!pools.ContainsKey(prefab))
+            if (!Pools.ContainsKey(prefab))
             {
                 CreatePool(prefab);
             }
-
-            return pools[prefab].Get();
+            var obj = Pools[prefab].Get();
+            // Already tracked in actionOnGet
+            return obj;
         }
 
         // Fetch a component of type T from the pooled GameObject
@@ -92,14 +103,14 @@ namespace DeliveryMultiverse
             if (prefab == null || instance == null)
                 return;
 
-            if (!pools.ContainsKey(prefab))
+            if (!Pools.ContainsKey(prefab))
             {
                 Debug.LogWarning($"No pool exists for prefab {prefab.name}. Destroying instance instead.");
                 UnityEngine.Object.Destroy(instance);
                 return;
             }
-
-            pools[prefab].Release(instance);
+            Pools[prefab].Release(instance);
+            // Already removed from active in actionOnRelease
         }
 
         // Return a GameObject back to its pool (automatically finds prefab from PooledObject component)
@@ -136,21 +147,46 @@ namespace DeliveryMultiverse
         // Clear a specific pool
         public static void ClearPool(GameObject prefab)
         {
-            if (pools.ContainsKey(prefab))
+            if (Pools.ContainsKey(prefab))
             {
-                pools[prefab].Clear();
-                pools.Remove(prefab);
+                // Destroy all active objects
+                if (ActiveObjects.ContainsKey(prefab))
+                {
+                    foreach (var obj in ActiveObjects[prefab])
+                    {
+                        if (obj != null)
+                            UnityEngine.Object.Destroy(obj);
+                    }
+                    ActiveObjects[prefab].Clear();
+                }
+                Pools[prefab].Clear(); // Destroys inactive objects
+                Pools.Remove(prefab);
+                ActiveObjects.Remove(prefab);
             }
         }
 
         // Clear all pools
         public static void ClearAllPools()
         {
-            foreach (var pool in pools.Values)
+            foreach (var prefab in Pools.Keys)
             {
-                pool.Clear();
+                // Destroy all active objects
+                if (ActiveObjects.ContainsKey(prefab))
+                {
+                    foreach (var obj in ActiveObjects[prefab])
+                    {
+                        if (obj != null)
+                            UnityEngine.Object.Destroy(obj);
+                    }
+                    ActiveObjects[prefab].Clear();
+                }
             }
-            pools.Clear();
+            foreach (var pool in Pools.Values)
+            {
+                pool.Clear(); // Destroys inactive objects
+            }
+            Pools.Clear();
+            ActiveObjects.Clear();
         }
     }
 }

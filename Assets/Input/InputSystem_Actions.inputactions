@@ -463,6 +463,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleInstructions",
+                    "type": "Button",
+                    "id": "a10962d6-74c9-4d45-9c9e-a85a4a2fa928",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -551,6 +560,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "MuteBgm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb2c1e5e-81f2-47a0-ad58-937f83c8f0de",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleInstructions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08a73def-db0c-4e40-800b-9186daa05c5a",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ToggleInstructions",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
