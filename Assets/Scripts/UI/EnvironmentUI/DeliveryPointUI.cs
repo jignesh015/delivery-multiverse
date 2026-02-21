@@ -11,9 +11,11 @@ namespace DeliveryMultiverse
         [SerializeField] private GameObject stopIndicator;
         [SerializeField] private GameObject interactIndicator;
         
-        [Header("Bounce Animation Settings")]
+        [Header("Animation Settings")]
         [SerializeField] private float bounceHeight = 0.5f;
         [SerializeField] private float bounceDuration = 0.5f;
+        [SerializeField] private float punchScaleFactor = 0.5f;
+        [SerializeField] private float punchScaleDuration = 0.25f;
         [SerializeField] private Ease bounceEase = Ease.InOutSine;
         
         private DeliveryPoint m_DeliveryPoint;
@@ -114,7 +116,7 @@ namespace DeliveryMultiverse
             ToggleStopIndicator(false);
             
             interactIndicator.transform.localScale = m_OriginalInteractIndicatorScale;
-            interactIndicator.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
+            interactIndicator.transform.DOPunchScale(m_OriginalInteractIndicatorScale * punchScaleFactor, punchScaleDuration, 1).OnComplete(() =>
             {
                 ToggleInteractIndicator(false);
                 ToggleUIVisibility(false);

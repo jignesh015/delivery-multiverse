@@ -31,6 +31,7 @@ namespace DeliveryMultiverse
         public const string VehicleTag = "Player";
         public const string ObstacleTag = "Obstacle";
         public const string DeliveryScorePref = "DeliveryScoreInfo";
+        public const string HasSeenBiomePref = "HasSeenBiome_";
 
         #endregion
 
@@ -112,7 +113,6 @@ namespace DeliveryMultiverse
             var scoreInfoList = JsonUtility.FromJson<DeliveryScoreInfoList>(json);
             return scoreInfoList;
         }
-
         #endregion
     }
 }
