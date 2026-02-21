@@ -12,6 +12,7 @@ namespace DeliveryMultiverse
         public static BiomeType CurrentBiome;
         public static bool IsPlayingMinigame;
         public static bool IsDayActive;
+        public static bool IsInMenuScene;
         public static VehicleConfig CurrentVehicleConfig;
 
         public static int CurrentDayNumber;
@@ -78,6 +79,7 @@ namespace DeliveryMultiverse
             TotalTipsEarnedToday = 0;
             TotalTimeTaken = 0f;
             VehicleHealth = 1f;
+            IsInMenuScene = false;
         }
         
         public static void SaveDeliveryScore()
