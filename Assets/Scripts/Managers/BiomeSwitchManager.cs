@@ -69,6 +69,9 @@ namespace DeliveryMultiverse
         {
             var biomeTypes = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
             biomeTypes.Remove(GameStatic.CurrentBiome);
+            if(GameStatic.CurrentDayNumber == 2)
+                biomeTypes.Remove(BiomeType.Space); // Space biome is only available from day 3 onwards
+            
             var nextBiome = biomeTypes[UnityEngine.Random.Range(0, biomeTypes.Count)];
             biomeSwitchFeedback?.PlayFeedbacks();
             SwitchBiome(nextBiome);

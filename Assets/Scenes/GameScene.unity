@@ -6447,7 +6447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defee6790cea4193a93811adbd21d4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryMultiverse.GameManager
-  day1DeliveryCount: 3
+  day1And2DeliveryCount: 3
   deliveriesPerDayRange: {x: 3, y: 5}
   goToMenuFeedback: {fileID: 1085370088}
 --- !u!1 &821040845
@@ -7783,7 +7783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &904832143
 RectTransform:
   m_ObjectHideFlags: 0
