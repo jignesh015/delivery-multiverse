@@ -48,7 +48,7 @@ namespace DeliveryMultiverse
             GameStatic.VehicleHealth = Mathf.Max(0, GameStatic.VehicleHealth - healthDecrease);
             GameStatic.OnVehicleCollidedWithObstacle?.Invoke(isPropObstacle);
             
-            if (GameStatic.VehicleHealth < minValidHealth)
+            if (GameStatic.VehicleHealth < minValidHealth && !GameStatic.IsInMenuScene)
             {
                 GameStatic.VehicleHealth = 0;
                 GameStatic.OnVehicleDestroyed?.Invoke();
