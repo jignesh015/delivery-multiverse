@@ -8311,7 +8311,7 @@ MonoBehaviour:
   - biomeType: 2
     bgmSource: {fileID: 986043149}
   crossFadeDuration: 2
-  targetBGMVolume: 0.5
+  targetBGMVolume: 0.1
 --- !u!1 &972393740
 GameObject:
   m_ObjectHideFlags: 0

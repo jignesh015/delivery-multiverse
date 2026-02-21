@@ -20,7 +20,7 @@ namespace DeliveryMultiverse
         [SerializeField] private InputActionReference inputActionBiome2;
         [SerializeField] private InputActionReference inputActionBiome3;
 
-        private float nextBiomeSwitchTime = -1f;
+        private float m_TimeLeftToSwitchBiome = -1f;
         
         private void Awake()
         {
@@ -55,14 +55,14 @@ namespace DeliveryMultiverse
             }
             #endif
             
-            if(!GameStatic.CanSwitchBiome || !GameStatic.IsDayActive 
+            if(!GameStatic.CanSwitchBiome || Mathf.Approximately(m_TimeLeftToSwitchBiome, -1f) || !GameStatic.IsDayActive 
                 || GameStatic.IsPlayingMinigame || Time.timeScale == 0) 
                 return;
 
-            if (Time.time >= nextBiomeSwitchTime)
-            {
-                SwitchBiomeRandomly();
-            }
+            m_TimeLeftToSwitchBiome -= Time.deltaTime;
+            if (m_TimeLeftToSwitchBiome > 0f) return;
+            m_TimeLeftToSwitchBiome = -1f;
+            SwitchBiomeRandomly();
         }
         
         private void SwitchBiomeRandomly()
@@ -84,9 +84,7 @@ namespace DeliveryMultiverse
             }
             
             GameStatic.OnBiomeChanged?.Invoke(biomeType);
-            
-            var interval = UnityEngine.Random.Range(biomeSwitchIntervalRange.x, biomeSwitchIntervalRange.y);
-            nextBiomeSwitchTime = Time.time + interval;
+            m_TimeLeftToSwitchBiome = UnityEngine.Random.Range(biomeSwitchIntervalRange.x, biomeSwitchIntervalRange.y);
         }
     }
     
