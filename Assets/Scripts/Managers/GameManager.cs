@@ -1,4 +1,5 @@
 using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace DeliveryMultiverse
@@ -6,7 +7,7 @@ namespace DeliveryMultiverse
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Vector2Int deliveriesPerDayRange = new Vector2Int(5, 7);
-        
+        [SerializeField] private MMF_Player goToMenuFeedback;
         
         private void Awake()
         {
@@ -15,6 +16,7 @@ namespace DeliveryMultiverse
             GameStatic.OnNextDayButtonPressed += StartNewDay;
             GameStatic.OnVehicleDestroyed += OnVehicleDestroyed;
             GameStatic.OnRestartDayButtonPressed += StartNewDay;
+            GameStatic.OnResignButtonPressed += OnResignButtonPressed;
         }
 
         private void OnDestroy()
@@ -23,6 +25,7 @@ namespace DeliveryMultiverse
             GameStatic.OnNextDayButtonPressed -= StartNewDay;
             GameStatic.OnVehicleDestroyed -= OnVehicleDestroyed;
             GameStatic.OnRestartDayButtonPressed -= StartNewDay;
+            GameStatic.OnResignButtonPressed -= OnResignButtonPressed;
         }
 
         private void Start()
@@ -80,7 +83,10 @@ namespace DeliveryMultiverse
             GameStatic.CurrentDayNumber--;
         }
         
-
+        private void OnResignButtonPressed()
+        {
+            goToMenuFeedback.PlayFeedbacks();
+        }
         #endregion
     }
 }
