@@ -55,6 +55,7 @@ namespace DeliveryMultiverse
             m_CanvasGroup.interactable = false;
             popUpTransform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
             {
+                ToggleCanvasGroup(false);
                 GameStatic.OnResignButtonPressed?.Invoke();
             });
         }
