@@ -24,11 +24,18 @@ namespace DeliveryMultiverse
         private void Awake()
         {
             GameStatic.OnBiomeChanged += OnBiomeChanged;
+            GameStatic.OnWelcomeScreenRequested += OnWelcomeScreenRequested;
         }
         
         private void OnDestroy()
         {
             GameStatic.OnBiomeChanged -= OnBiomeChanged;
+            GameStatic.OnWelcomeScreenRequested -= OnWelcomeScreenRequested;
+        }
+
+        private void OnWelcomeScreenRequested()
+        {
+            OnBiomeChanged(BiomeType.Normal);
         }
 
         private void OnBiomeChanged(BiomeType biomeType)

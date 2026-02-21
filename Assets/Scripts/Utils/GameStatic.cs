@@ -38,6 +38,7 @@ namespace DeliveryMultiverse
         // Game Events
         public static UnityAction OnNewDayStarted;
         public static UnityAction OnDayEnded;
+        public static UnityAction OnWelcomeScreenRequested;
         
         // Vehicle Events
         public static UnityAction<bool> OnVehicleCollidedWithObstacle; // bool parameter indicates if the vehicle collided with prop obstacle
@@ -60,6 +61,7 @@ namespace DeliveryMultiverse
         public static UnityAction OnPlayerPressedInteract;
         
         // Player UI Events
+        public static UnityAction OnBeginButtonPressed;
         public static UnityAction OnNextDayButtonPressed;
         public static UnityAction OnRestartDayButtonPressed;
         public static UnityAction OnResignButtonPressed;

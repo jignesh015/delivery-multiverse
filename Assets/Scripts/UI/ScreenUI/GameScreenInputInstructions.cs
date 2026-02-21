@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,10 +17,29 @@ namespace DeliveryMultiverse
         
         private void Awake()
         {
-            m_IsInstructionsVisible = true;
-            instructionsPanel.alpha = 1f;
+            m_IsInstructionsVisible = false;
+            instructionsPanel.alpha = 0f;
             showInstructionsPanel.alpha = 0f;
-            Invoke(nameof(ToggleInstructions), 5f);
+            
+            GameStatic.OnNewDayStarted += OnNewDayStarted;
+        }
+
+        private void OnDestroy()
+        {
+            GameStatic.OnNewDayStarted -= OnNewDayStarted;
+        }
+
+        private void OnNewDayStarted()
+        {
+            ToggleInstructions();
+            StartCoroutine(AutoHideInstructions());
+        }
+        
+        private IEnumerator AutoHideInstructions()
+        {
+            yield return new WaitForSeconds(10f);
+            if (m_IsInstructionsVisible)
+                ToggleInstructions();
         }
 
         private void OnEnable()
