@@ -19,7 +19,7 @@ namespace DeliveryMultiverse
                 vehicleRigidbody.linearVelocity.magnitude);
             m_NewScale = Vector3.Lerp(m_NewScale, Vector3.one * Mathf.Lerp(scaleRange.x, scaleRange.y, normalizedSpeed),
                 scaleLerpSpeed);
-            transform.localScale = m_NewScale;
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, m_NewScale.z);
         }
     }
 }
