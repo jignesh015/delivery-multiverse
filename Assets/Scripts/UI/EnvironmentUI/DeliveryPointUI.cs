@@ -21,6 +21,7 @@ namespace DeliveryMultiverse
         private Tween m_CurrentTween;
         
         private Vector3 m_OriginalPinPosition;
+        private Vector3 m_OriginalInteractIndicatorScale;
         private bool m_IsOnScreen = false;
         
         private Canvas m_Canvas;
@@ -30,6 +31,7 @@ namespace DeliveryMultiverse
         private void Awake()
         {
             m_OriginalPinPosition = pinPointTransform.localPosition;
+            m_OriginalInteractIndicatorScale = interactIndicator.transform.localScale;
             m_Canvas = GetComponentInParent<Canvas>();
             
             TryGetComponent(out m_RectTransform);
@@ -110,8 +112,14 @@ namespace DeliveryMultiverse
             
             TogglePinPointTween(false);
             ToggleStopIndicator(false);
-            ToggleInteractIndicator(false);
-            ToggleUIVisibility(false);
+            
+            interactIndicator.transform.localScale = m_OriginalInteractIndicatorScale;
+            interactIndicator.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                ToggleInteractIndicator(false);
+                ToggleUIVisibility(false);
+                interactIndicator.transform.localScale = m_OriginalInteractIndicatorScale;
+            });
         }
 
         private void OnDayEnded()

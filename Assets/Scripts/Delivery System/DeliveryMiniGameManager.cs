@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine.InputSystem;
 using TMPro;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ namespace DeliveryMultiverse
     {
         [Header("Mini-Game UI References")]
         [SerializeField] private GameObject miniGamePopup;
+        [SerializeField] private float popupDelay = 0.3f;
         
         [Header("Delivering Screen")]
         [SerializeField] private GameObject deliveringScreen;
@@ -39,6 +41,17 @@ namespace DeliveryMultiverse
         [Header("Game Settings")]
         [SerializeField] private float gameDuration = 15f;
         [SerializeField] private float delayBeforeEnd = 2f;
+        
+        [Header("Feedbacks")]
+        [SerializeField] private MMF_Player deliveringScreenFeedback;
+        [SerializeField] private MMF_Player deliveredScreenFeedback;
+        [SerializeField] private MMF_Player deliveryFailedFeedback;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioSource popupSfx;
+        [SerializeField] private AudioSource coinSfx;
+        [SerializeField] private int coinSfxInterval = 5;
+        [SerializeField] private Vector2 coinSfxPitchRange = new Vector2(0.8f, 2f);
         
         [Serializable]
         private class BiomeSpecificSettings
@@ -69,6 +82,10 @@ namespace DeliveryMultiverse
         [SerializeField] private int minTipAmount = 5;
         [SerializeField] private int maxTipAmount = 40;
         [SerializeField] private float tipAmountTweenDuration = 1f;
+
+        [Header("Failure Feedback Settings")] [SerializeField]
+        private int deliveryCompleteCount = 2;
+        [SerializeField] private GameObject deliveryFailedScreen;
         
         // Private variables
         private DeliveryPoint m_CurrentDeliveryPoint;
@@ -82,6 +99,7 @@ namespace DeliveryMultiverse
         private float m_CurrentSafeZoneWidth;
         private Coroutine m_GameCoroutine;
         private CanvasGroup m_CanvasGroup;
+        private bool m_PlayDeliveryFailedFeedback;
         
         private void Awake()
         {
@@ -128,6 +146,8 @@ namespace DeliveryMultiverse
         private void OnPlayerInteractedWithDeliveryPoint(DeliveryPoint deliveryPoint)
         {
             m_CurrentDeliveryPoint = deliveryPoint;
+            m_PlayDeliveryFailedFeedback = GameStatic.CurrentDayNumber == 1 && GameStatic.DeliveriesCompletedToday == deliveryCompleteCount;
+            
             StartMiniGame();
         }
 
@@ -143,6 +163,9 @@ namespace DeliveryMultiverse
         {
             // Initialize the mini-game
             InitializeMiniGame();
+            yield return new WaitForSeconds(popupDelay);
+            
+            popupSfx?.Play();
             ToggleCanvasGroup(true);
             
             // Show popup with animation
@@ -154,7 +177,10 @@ namespace DeliveryMultiverse
             
             // Start the game
             m_IsGameActive = true;
-            m_GameTimer = gameDuration;
+            m_GameTimer = gameDuration * (m_PlayDeliveryFailedFeedback ? 0.5f : 1f);
+            
+            if (deliveringScreenFeedback)
+                deliveringScreenFeedback.PlayFeedbacks();
             
             // Game loop
             while (m_GameTimer > 0f)
@@ -186,6 +212,7 @@ namespace DeliveryMultiverse
             // Set initial UI states
             deliveredScreen.SetActive(false);
             deliveringScreen.SetActive(true);
+            deliveryFailedScreen.SetActive(false);
             
             // Get bar width
             if (barContainer)
@@ -321,26 +348,38 @@ namespace DeliveryMultiverse
 
         private void EndMiniGame()
         {
-            var finalScore = GetNormalizedScore();
+            if (deliveringScreenFeedback)
+                deliveringScreenFeedback.StopFeedbacks();
 
-            deliveringScreen.SetActive(false);
-            deliveredScreen.SetActive(true);
+            if (m_PlayDeliveryFailedFeedback && deliveryFailedFeedback)
+            {
+                deliveryFailedFeedback.PlayFeedbacks();
+            }
+            else
+            {
+                var finalScore = GetNormalizedScore();
+            
+                deliveringScreen.SetActive(false);
+                deliveredScreen.SetActive(true);
 
-            // Set final balance score
-            if (finalBalanceScoreText)
-                finalBalanceScoreText.text = $"Balance : {(finalScore * 100f):F0}%";
+                // Set final balance score
+                if (finalBalanceScoreText)
+                    finalBalanceScoreText.text = $"Balance : {(finalScore * 100f):F0}%";
 
-            // Calculate tip amount (scaled by score)
-            var tipAmount = Mathf.RoundToInt(Mathf.Lerp(minTipAmount, maxTipAmount, finalScore));
+                // Calculate tip amount (scaled by score)
+                var tipAmount = Mathf.RoundToInt(Mathf.Lerp(minTipAmount, maxTipAmount, finalScore));
 
-            // Start coroutine to animate tip and close popup
-            StartCoroutine(ShowTipAndCloseCoroutine(tipAmount));
+                // Start coroutine to animate tip and close popup
+                StartCoroutine(ShowTipAndCloseCoroutine(tipAmount));
+                
+            }
         }
 
         private IEnumerator ShowTipAndCloseCoroutine(int tipAmount)
         {
             var elapsed = 0f;
             var tipAmountColorHtml = ColorUtility.ToHtmlStringRGB(tipAmountColor);
+            var lastPlayedTip = 0;
             while (elapsed < tipAmountTweenDuration)
             {
                 elapsed += Time.deltaTime;
@@ -348,11 +387,29 @@ namespace DeliveryMultiverse
                 var displayedTip = Mathf.RoundToInt(Mathf.Lerp(0, tipAmount, t));
                 if (tipEarnedText)
                     tipEarnedText.text = $"Tips Earned: <color=#{tipAmountColorHtml}>${displayedTip}</color>";
+                // Play coinSfx for every coinSfxInterval increment, varying pitch
+                if (coinSfx && coinSfxInterval > 0 && displayedTip > lastPlayedTip)
+                {
+                    var start = lastPlayedTip + 1;
+                    for (var i = start; i <= displayedTip; i++)
+                    {
+                        if (i % coinSfxInterval != 0) continue;
+                        var progress = tipAmount > 1 ? (float)i / tipAmount : 0f;
+                        var pitch = Mathf.Lerp(coinSfxPitchRange.x, coinSfxPitchRange.y, progress);
+                        coinSfx.pitch = pitch;
+                        coinSfx.Play();
+                    }
+                    lastPlayedTip = displayedTip;
+                }
                 yield return null;
             }
             // Ensure final value is set
             if (tipEarnedText)
                 tipEarnedText.text = $"Tips Earned: <color=#{tipAmountColorHtml}>${tipAmount}</color>";
+            
+            yield return new WaitForSeconds(0.1f);
+            
+            deliveredScreenFeedback?.PlayFeedbacks();
 
             // Wait for delayBeforeEnd
             yield return new WaitForSeconds(delayBeforeEnd);
@@ -364,6 +421,19 @@ namespace DeliveryMultiverse
                 ToggleCanvasGroup(false);
                 GameStatic.IsPlayingMinigame = false;
                 GameStatic.OnDeliveryCompleted?.Invoke(m_CurrentDeliveryPoint, tipAmount);
+            });
+        }
+        
+        public void OnFailedDeliveryFeedbackComplete()
+        {
+            // Hide popup with animation, then invoke event
+            miniGamePopup.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                miniGamePopup.SetActive(false);
+                ToggleCanvasGroup(false);
+                GameStatic.IsPlayingMinigame = false;
+                GameStatic.CanSwitchBiome = true;
+                GameStatic.OnDeliveryCompleted?.Invoke(m_CurrentDeliveryPoint, 0);
             });
         }
     }

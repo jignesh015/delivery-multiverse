@@ -13,6 +13,7 @@ namespace DeliveryMultiverse
         public static bool IsPlayingMinigame;
         public static bool IsDayActive;
         public static bool IsInMenuScene;
+        public static bool CanSwitchBiome = false;
         public static VehicleConfig CurrentVehicleConfig;
 
         public static int CurrentDayNumber;
@@ -78,6 +79,7 @@ namespace DeliveryMultiverse
             IsPlayingMinigame = false;
             IsDayActive = false;
             CurrentDayNumber = LoadDeliveryScores().scores.Count;
+            CanSwitchBiome = CurrentDayNumber > 0;
             TotalTipsEarnedToday = 0;
             TotalTimeTaken = 0f;
             VehicleHealth = 1f;
