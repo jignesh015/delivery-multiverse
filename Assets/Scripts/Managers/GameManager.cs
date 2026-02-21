@@ -22,6 +22,7 @@ namespace DeliveryMultiverse
 
         private void OnDestroy()
         {
+            GameStatic.ResetGameState();
             GameStatic.OnDeliveryCompleted -= OnDeliveryCompleted;
             GameStatic.OnNextDayButtonPressed -= StartNewDay;
             GameStatic.OnVehicleDestroyed -= OnVehicleDestroyed;
