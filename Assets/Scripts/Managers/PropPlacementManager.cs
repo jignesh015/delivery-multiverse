@@ -28,6 +28,7 @@ namespace DeliveryMultiverse
         {
             GameStatic.OnBiomeChanged -= OnBiomeChanged;
             GameStatic.OnNewDayStarted -= OnNewDayStarted;
+            StaticPool.ClearAllPools();
         }
 
         private void Start()

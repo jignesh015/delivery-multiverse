@@ -8,6 +8,7 @@ namespace DeliveryMultiverse
     {
         [Header("Items")]
         [SerializeField] private List<Transform> itemsToAnimate;
+        [SerializeField] private CanvasGroup inputInstructionCanvasGroup;
 
         [Header("Item Tween Settings")]
         [SerializeField] private float tweenDuration = 0.6f;
@@ -56,6 +57,8 @@ namespace DeliveryMultiverse
         private void CacheAndPrepareItems()
         {
             if (itemsToAnimate == null || itemsToAnimate.Count == 0) return;
+            
+            if (inputInstructionCanvasGroup) inputInstructionCanvasGroup.alpha = 0f;
 
             // Sort ascending by world Z position
             itemsToAnimate.Sort((a, b) =>
@@ -159,6 +162,10 @@ namespace DeliveryMultiverse
                 .OnComplete(() =>
                 {
                     if (vanRigidbody) vanRigidbody.isKinematic = false;
+                    if (inputInstructionCanvasGroup)
+                    {
+                        inputInstructionCanvasGroup.DOFade(1f, 0.5f);
+                    }
                 });
         }
     }
