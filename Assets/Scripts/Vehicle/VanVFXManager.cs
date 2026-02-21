@@ -19,6 +19,7 @@ namespace DeliveryMultiverse
         [SerializeField] private List<BiomeFeedback> biomeFeedbacks;
         [SerializeField] private Transform visualTransform;
         [SerializeField] private AudioSource deliveryPointInteractSfx;
+        [SerializeField] private MMF_Player exclamationFeedback;
         
         private BiomeFeedback m_CurrentBiomeFeedback;
         private Vector3 m_InitialVisualPosition;
@@ -61,6 +62,13 @@ namespace DeliveryMultiverse
                 m_CurrentBiomeFeedback?.feedback.PlayFeedbacks();
             }
             visualTransform.localPosition = m_InitialVisualPosition;
+            
+            if(biomeType == BiomeType.Normal)return;
+            
+            var prefKey = $"{GameStatic.HasSeenBiomePref}_{biomeType.ToString()}";
+            if (PlayerPrefs.HasKey(prefKey)) return;
+            exclamationFeedback?.PlayFeedbacks();
+            PlayerPrefs.SetInt(prefKey, 1);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

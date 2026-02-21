@@ -7783,7 +7783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &904832143
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12496,7 +12496,7 @@ MonoBehaviour:
     biomeObj: {fileID: 1556086598}
   - biomeType: 2
     biomeObj: {fileID: 1029029522}
-  biomeSwitchIntervalRange: {x: 15, y: 45}
+  biomeSwitchIntervalRange: {x: 15, y: 25}
   biomeSwitchFeedback: {fileID: 1141476164}
   inputActionBiome1: {fileID: 3167505424195882150, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   inputActionBiome2: {fileID: -4908351934854642093, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -24226,6 +24226,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3591293185264518888}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &32917034844975944
 GameObject:
@@ -25427,6 +25429,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3711308306690669578}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &158201836154249601
 Transform:
@@ -25538,6 +25542,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3739536861752703023}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &167142303566905020
 MonoBehaviour:
@@ -26519,6 +26525,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3869721558061074831}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &294826340114302846
 MeshFilter:
@@ -28967,6 +28975,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3976599516053151861}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &471405700274199144
 RectTransform:
@@ -29943,6 +29953,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3950782041309797310}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &539465246113970821
 RectTransform:
@@ -30298,6 +30310,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4157475751919028101}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &582723208502007891
 MonoBehaviour:
@@ -31048,6 +31062,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4140370968687559531}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &638589448961683422
 RectTransform:
@@ -31501,6 +31517,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4095888682752254763}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &682178725029607900
 MeshFilter:
@@ -31779,6 +31797,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4299762737157024317}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &725065392696340887
 MonoBehaviour:
@@ -33696,6 +33716,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4204620894987769114}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &866583004150065742
 GameObject:
@@ -34495,6 +34517,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4416036057184027296}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &933771653610170292
 MeshRenderer:
@@ -34658,6 +34682,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4376091719082370786}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &948986981529984522
 CanvasRenderer:
@@ -37964,6 +37990,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2584249752408025715}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &1332818712929905962
 GameObject:
@@ -38950,6 +38978,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2469578389235476592}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &1438813418186970934
 CanvasRenderer:
@@ -39737,6 +39767,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2642974065691579063}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &1516984531837886997
 MeshFilter:
@@ -40839,6 +40871,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2865316285833520736}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &1614633935280384936
 CanvasRenderer:
@@ -42500,6 +42534,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2968338764105227447}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &1772319944580615723
 MonoBehaviour:
@@ -43424,6 +43460,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2916444203790233835}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &1864836558886838522
 MonoBehaviour:
@@ -45090,6 +45128,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3057959042175785480}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &2008431787887115059
 RectTransform:
@@ -46705,6 +46745,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 3428079367788904542}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &2176947520849526130
 GameObject:
@@ -51463,6 +51505,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1529204706316264200}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &2639776816504154468
 CanvasRenderer:
@@ -51730,6 +51774,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1548545128462982455}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &2659922431929169698
 MonoBehaviour:
@@ -51748,6 +51794,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1535471684003206338}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &2661411559226602425
 GameObject:
@@ -51799,6 +51847,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1540019147265183695}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &2666227171739126052
 CanvasRenderer:
@@ -54386,6 +54436,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1586630422096733777}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &2857956793321111471
 MeshRenderer:
@@ -56233,6 +56285,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1738646947115297413}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!225 &2994212084877486797
 CanvasGroup:
@@ -56605,6 +56659,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1982226263611317600}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &3040047744924208680
 RectTransform:
@@ -58796,6 +58852,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2028725358817147100}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &3282318714121805502
 MeshRenderer:
@@ -60216,6 +60274,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 2165253111590883058}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &3436541406596847082
 MonoBehaviour:
@@ -60467,6 +60527,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 124955851218130343}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &3467769058098512170
 MeshRenderer:
@@ -60858,6 +60920,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 100067831782507736}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &3514691043369828680
 Transform:
@@ -63550,6 +63614,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 418147561315510124}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &3777358079611003426
 MeshRenderer:
@@ -63988,6 +64054,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 395137947300243591}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &3810081715568639980
 MonoBehaviour:
@@ -64636,6 +64704,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 303205917174988056}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &3863472951622299172
 MeshFilter:
@@ -65581,6 +65651,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 509635688423897136}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &3943797822427103917
 CanvasRenderer:
@@ -66311,6 +66383,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 440537345453192764}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &4021385959644903952
 Transform:
@@ -67516,6 +67590,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 625285584003193294}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &4110624371975161877
 GameObject:
@@ -67978,6 +68054,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 576570122346809403}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &4156316370940559019
 GameObject:
@@ -68200,6 +68278,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 843074937484806758}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &4186497989853228036
 MeshRenderer:
@@ -70465,6 +70545,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 976180064049016584}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &4336917583100796765
 MonoBehaviour:
@@ -71931,6 +72013,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 1117573474365119865}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &4481203112243864127
 CanvasRenderer:
@@ -74053,6 +74137,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8128760875645621544}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!222 &4719064175076555831
 CanvasRenderer:
@@ -75579,6 +75665,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8270149130637706339}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &4857842283232194850
 GameObject:
@@ -78168,6 +78256,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8645721417130793833}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &5073060028644945241
 GameObject:
@@ -80394,6 +80484,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8658605489322871045}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &5305144059347355726
 GameObject:
@@ -82087,6 +82179,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8842701844338051086}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &5415969266384096026
 GameObject:
@@ -83633,6 +83727,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 9009940662774741287}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &5525990691525333420
 MonoBehaviour:
@@ -83944,6 +84040,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8972642923737057709}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &5558692556392470630
 Transform:
@@ -85464,6 +85562,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 9126182862433514904}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &5692841127759164586
 GameObject:
@@ -87892,6 +87992,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7179286957058968234}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &5912196132037259593
 MeshFilter:
@@ -88930,6 +89032,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7063056967854772762}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &6026993785875094110
 GameObject:
@@ -89364,6 +89468,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7316176332319260735}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &6069995331332499902
 Transform:
@@ -90448,6 +90554,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7232230866275694122}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &6195568467934243671
 Transform:
@@ -92700,6 +92808,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7599929910976809800}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &6407951535658123873
 MonoBehaviour:
@@ -95041,6 +95151,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7658033597722345941}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!65 &6622826764104059841
 BoxCollider:
@@ -95351,6 +95463,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7910039443933761336}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &6657973914568490861
 MonoBehaviour:
@@ -95989,6 +96103,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 7880679098524109974}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &6703090208878237364
 RectTransform:
@@ -97488,6 +97604,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 8006643072303539854}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &6830800326244398678
 Transform:
@@ -100656,6 +100774,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5992541743050244419}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &7104379410526058415
 MonoBehaviour:
@@ -101007,6 +101127,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5962494407658082868}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &7141395187435898661
 MonoBehaviour:
@@ -101621,6 +101743,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6174854608671871352}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &7217547938261476827
 GameObject:
@@ -104018,6 +104142,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6261515426861710151}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!65 &7443292812776882551
 BoxCollider:
@@ -105315,6 +105441,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6419310793784202291}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &7545615364674933203
 MeshFilter:
@@ -106901,6 +107029,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6620240716810352645}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!23 &7672873556070816327
 MeshRenderer:
@@ -106968,6 +107098,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6568446863610099614}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!33 &7678912280157277986
 MeshFilter:
@@ -108673,6 +108805,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 6681231416855273778}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &7865558639075315268
 RectTransform:
@@ -111971,6 +112105,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4667700833359581230}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!224 &8170231079720446515
 RectTransform:
@@ -112425,6 +112561,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4879443077836567032}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!225 &8222885598185893360
 CanvasGroup:
@@ -112802,6 +112940,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 4845634720911516613}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &8257923364454795181
 GameObject:
@@ -116079,6 +116219,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5170978385793361921}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &8536487858179359104
 Transform:
@@ -116736,6 +116878,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5054724852835408096}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!4 &8616166757603439304
 Transform:
@@ -117559,6 +117703,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5292084696410168910}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!114 &8707816559266876626
 MonoBehaviour:
@@ -121681,6 +121827,8 @@ MonoBehaviour:
   interactIndicator: {fileID: 5739293706532501061}
   bounceHeight: 75
   bounceDuration: 0.5
+  punchScaleFactor: -0.6
+  punchScaleDuration: 0.5
   bounceEase: 4
 --- !u!1 &9079762763590178504
 GameObject:
