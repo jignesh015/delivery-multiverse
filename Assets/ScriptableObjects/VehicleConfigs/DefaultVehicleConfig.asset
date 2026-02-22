@@ -15,7 +15,7 @@ MonoBehaviour:
   biomeType: 0
   maxSpeed: 25
   reverseSpeedFactor: 1
-  acceleration: 40
+  acceleration: 50
   drag: 2
   steeringSensitivity: 100
   gravityMultiplier: 1
