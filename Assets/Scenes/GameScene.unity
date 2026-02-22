@@ -12496,7 +12496,7 @@ MonoBehaviour:
     biomeObj: {fileID: 1556086598}
   - biomeType: 2
     biomeObj: {fileID: 1029029522}
-  biomeSwitchIntervalRange: {x: 15, y: 25}
+  biomeSwitchIntervalRange: {x: 10, y: 20}
   biomeSwitchFeedback: {fileID: 1141476164}
   inputActionBiome1: {fileID: 3167505424195882150, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   inputActionBiome2: {fileID: -4908351934854642093, guid: 052faaac586de48259a63d0c4782560b, type: 3}
