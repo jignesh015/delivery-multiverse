@@ -7442,7 +7442,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Let\u2019s just\u2026\nhope nothing comes out of it."
+  m_text: "Let\u2019s just\u2026\nhope nothing <b><color=#FF4000>BAD</color></b>
+    comes out of it."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5de0dc46b372914d87832983af1a74a, type: 2}
   m_sharedMaterial: {fileID: 6242116494308617172, guid: e5de0dc46b372914d87832983af1a74a, type: 2}
@@ -11837,7 +11838,7 @@ MonoBehaviour:
           ButtonText: Automatic Shaker Setup
         Owner: {fileID: 1140322526}
         DebugActive: 0
-        Sfx: {fileID: 8300000, guid: 7fde4c9141938aa43bb4719fda47aad8, type: 3}
+        Sfx: {fileID: 8300000, guid: e871773805d50584bb21f23685c8c608, type: 3}
         RandomSfx: []
         TestPlayButton:
           ButtonText: Debug Play Sound
